@@ -1,0 +1,21 @@
+# Files
+*.o
+*.elf
+*.velf
+*.bin
+*.vpk
+*.sfo
+*.self
+
+switch_sd2vita
+
+# CMake data
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
