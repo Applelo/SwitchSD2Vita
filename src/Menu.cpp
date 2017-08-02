@@ -11,6 +11,7 @@ Menu::Menu() {
 	_engine = new Engine();
 	_step = MAIN;
 	_selector = 1;
+	_log = "";
 }
 
 Menu::~Menu() {
@@ -19,13 +20,13 @@ Menu::~Menu() {
 void Menu::main() {
 
 	//Display Txt
-	for (int i = 0; i < _mainMenu.size(); i++) {
+	for (int i = 0; i < _mainMenu.size(); i++)
 		vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_selector == (i+1)) ? WHITE : LIGHT_GREY, 1.2, "%s", _mainMenu[i].c_str());
-		if (_ctrl_press.buttons & SCE_CTRL_CROSS)
-			_step = (Step) i;
-	}
 
 	vita2d_pgf_draw_text(_pgf, 20, (40 * _selector), WHITE, 1.2, ">");
+
+	vita2d_pgf_draw_textf(_pgf, 50, 300, (_result) ? GREEN : RED , 1.0,"%s", _log);
+
 
 	vita2d_pgf_draw_text(_pgf, 700, 450, WHITE, 1.3, "Switch SD2Vita");
 	vita2d_pgf_draw_textf(_pgf, 900, 450, WHITE, 0.9,"%0.2f", VERSION_NUMBER);
@@ -46,18 +47,54 @@ void Menu::main() {
 	if (_selector < 1)
 		_selector = 4;
 
+	if (_ctrl_press.buttons & SCE_CTRL_CROSS) {
+		switch (_selector) {
+	      case 1:
+	        _step = SWITCH_TO_UXO;
+	        break;
+
+	      case 2:
+	        _step = SWITCH_TO_UMAO;
+	        break;
+
+	      case 3:
+	        _step = UNINSTALL;
+	        break;
+
+	       case 4:
+	        _step = EXIT;
+	        break;
+	    }
+	}
+
 }
 
 void Menu::switch_to_ux0() {
+	_result = _engine->switch_to_ux0();
+	if (_result)
+		_log = "Success to switch to ux0";
+	else
+		_log = "Fail to switch to ux0. Use Uninstall option and retry.";
 
+	_step = MAIN;
 }
 
 void Menu::switch_to_uma0() {
-
+	_result = _engine->switch_to_uma0();
+	if (_result)
+		_log = "Success to switch to uma0";
+	else
+		_log = "Fail to switch to uma0. Use Uninstall option and retry.";
+	_step = MAIN;
 }
 
 void Menu::uninstall() {
-
+	_result = _engine->uninstall();
+	if (_result)
+		_log = "Success to uninstall files";
+	else
+		_log = "Fail to uninstall...";
+	_step = MAIN;
 }
 
 //Setter

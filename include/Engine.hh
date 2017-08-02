@@ -14,17 +14,16 @@
 
 class Engine {
 private:
+	int _result;
 	File* _file;
 
 public:
 	Engine();
 	virtual ~Engine();
 
-	void switch_to_ux0();
-	void switch_to_uma0();
-	void uninstall();
-
-
+	int switch_to_ux0();
+	int switch_to_uma0();
+	int uninstall();
 
 };
 #endif /* !ENGINE_HH_ */

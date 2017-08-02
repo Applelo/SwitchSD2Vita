@@ -33,6 +33,8 @@ private:
 	vita2d_pgf *_pgf;
 	Engine* _engine;
 	int _selector;
+	int _result;
+	char const *_log;
 
 
 public:
