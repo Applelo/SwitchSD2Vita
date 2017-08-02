@@ -29,6 +29,7 @@ public:
 	int writeFile(const void *buf, int size);
 	int checkFileExist();
 	int copyFile(const char *dst_path, FileProcessParam *param);
+	int getFileSize();
 
 	int removeFile();
 

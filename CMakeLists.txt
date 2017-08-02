@@ -53,6 +53,7 @@ add_executable(${SHORT_NAME}
 # Library to link to (drop the -l prefix). This will mostly be stubs.
 target_link_libraries(${SHORT_NAME}
     vita2d
+    taihen_stub
     SceDisplay_stub
     SceGxm_stub
     SceSysmodule_stub

@@ -11,6 +11,9 @@
 
 # include "Utils.h"
 # include "File.hh"
+extern "C" {
+	# include "../include/taiHenReload.h"
+}
 
 class Engine {
 private:

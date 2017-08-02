@@ -38,7 +38,7 @@ const char *File::getFile() {
 }
 
 int File::readFile(void *buf, int size) {
-	SceUID fd = sceIoOpen(_file, SCE_O_RDONLY, 0);
+	SceUID fd = sceIoOpen(_file, SCE_O_RDONLY, 0777);
 	if (fd < 0)
 		return fd;
 
@@ -152,6 +152,17 @@ int File::copyFile(const char *dst_path, FileProcessParam *param) {
 	sceIoClose(fdsrc);
 
 	return 1;
+}
+
+int File::getFileSize() {
+    SceUID fd = sceIoOpen(_file, SCE_O_RDONLY, 0);
+	if (fd < 0)
+		return fd;
+
+	int fileSize = sceIoLseek(fd, 0, SCE_SEEK_END);
+
+	sceIoClose(fd);
+	return fileSize;
 }
 
 int File::removeFile() {

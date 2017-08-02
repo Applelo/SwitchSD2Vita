@@ -25,6 +25,7 @@
 # include <map>
 # include <string>
 
+# include <taihen.h>
 # include <vita2d.h>
 
 # define lerp(value, from_max, to_max) ((((value*10) * (to_max*10))/(from_max*10))/10)
