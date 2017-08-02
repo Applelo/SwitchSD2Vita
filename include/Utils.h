@@ -1,6 +1,6 @@
 /*
  **
- ** Made by MisterAlex
+ ** Made by Applelo
  **
  */
 
@@ -14,7 +14,7 @@
 # include <string>
 # include <stdlib.h>
 # include <psp2/io/fcntl.h>
-# include <psp2/io/stat.h> 
+# include <psp2/io/stat.h>
 # include <psp2/ctrl.h>
 # include <psp2/kernel/processmgr.h>
 # include <psp2/touch.h>

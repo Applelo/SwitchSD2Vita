@@ -1,7 +1,6 @@
 /*
  **
  ** Made by Applelo
- ** And also MisterAlex (but a little)
  **
  */
 
@@ -20,10 +19,12 @@ Menu::~Menu() {
 void Menu::main() {
 
 	//Display Txt
-	vita2d_pgf_draw_text(_pgf, 50, 40, (_selector == 1) ? WHITE : LIGHT_GREY, 1.2, "Switch to ux0:");
-	vita2d_pgf_draw_text(_pgf, 50, 80, (_selector == 2) ? WHITE : LIGHT_GREY, 1.2, "Switch to uma0:");
-	vita2d_pgf_draw_text(_pgf, 50, 120, (_selector == 3) ? WHITE : LIGHT_GREY, 1.2, "Uninstall");
-	vita2d_pgf_draw_text(_pgf, 50, 160, (_selector == 4) ? WHITE : LIGHT_GREY, 1.2, "Exit");
+	for (int i = 0; i < _mainMenu.size(); i++) {
+		vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_selector == (i+1)) ? WHITE : LIGHT_GREY, 1.2, "%s", _mainMenu[i].c_str());
+		if (_ctrl_press.buttons & SCE_CTRL_CROSS)
+			_step = (Step) i;
+	}
+
 	vita2d_pgf_draw_text(_pgf, 20, (40 * _selector), WHITE, 1.2, ">");
 
 	vita2d_pgf_draw_text(_pgf, 700, 450, WHITE, 1.3, "Switch SD2Vita");
@@ -44,26 +45,6 @@ void Menu::main() {
 		_selector = 1;
 	if (_selector < 1)
 		_selector = 4;
-
-	if (_ctrl_press.buttons & SCE_CTRL_CROSS) {
-		switch (_selector) {
-			case 1:
-				_step = SWITCH_TO_UXO;
-				break;
-
-			case 2:
-				_step = SWITCH_TO_UMAO;
-				break;
-
-			case 3:
-				_step = UNINSTALL;
-				break;
-
-		 	case 4:
-				_step = EXIT;
-				break;
-		}
-	}
 
 }
 

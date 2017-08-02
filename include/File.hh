@@ -1,7 +1,6 @@
 /*
 **
-** Made by MisterAlex
-** And also Applelo (but a little)
+** Made by Applelo (but a little)
 **
 */
 
