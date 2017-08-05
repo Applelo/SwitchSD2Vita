@@ -14,7 +14,7 @@
 */
 
 /*
-** Converted with passion by Applelo
+** Converted and add functions with passion by Applelo
 */
 
 # include "../include/File.hh"
@@ -38,7 +38,7 @@ const char *File::getFile() {
 }
 
 int File::readFile(void *buf, int size) {
-	SceUID fd = sceIoOpen(_file, SCE_O_RDONLY, 0777);
+	SceUID fd = sceIoOpen(_file, SCE_O_RDONLY, 0);
 	if (fd < 0)
 		return fd;
 
@@ -49,7 +49,7 @@ int File::readFile(void *buf, int size) {
 }
 
 int File::writeFile(const void *buf, int size) {
-	SceUID fd = sceIoOpen(_file, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+	SceUID fd = sceIoOpen(_file, SCE_O_WRONLY | SCE_O_CREAT, 0);
 	if (fd < 0)
 		return fd;
 
@@ -155,7 +155,7 @@ int File::copyFile(const char *dst_path, FileProcessParam *param) {
 }
 
 int File::getFileSize() {
-    SceUID fd = sceIoOpen(_file, SCE_O_RDONLY, 0);
+	SceUID fd = sceIoOpen(_file, SCE_O_RDONLY, 0);
 	if (fd < 0)
 		return fd;
 
@@ -169,5 +169,74 @@ int File::removeFile() {
     int removed = sceIoRemove(_file);
     if (removed < 0)
         return 0;
+    return 1;
+}
+
+int File::findFileLine(const char *line) {
+    debugNetPrintf(DEBUG, "--findFileLine parameters--\nconst char *line: %s\n", line);
+    int pos_search = 0;
+    int pos_text = 0;
+    int len_search = strlen(line);
+    int len_text = this->getFileSize();
+    char text[len_text];
+    this->readFile(text, len_text);
+    for (pos_text = 0; pos_text < len_text - len_search;++pos_text) {
+        if(text[pos_text] == line[pos_search]) {
+            pos_search++;
+            if(pos_search == len_search) {
+                debugNetPrintf(DEBUG, "match from %d to %d\n", pos_text - len_search, pos_text);
+                return pos_text;
+            }
+        }
+        else {
+            pos_text -= pos_search;
+            pos_search = 0;
+        }
+    }
+    debugNetPrintf(DEBUG, "no match\n");
+    debugNetPrintf(DEBUG, "--finished findFileLine--\n", line);
+    return -1;
+}
+
+int File::addFileLine(const char* line, int position) {
+    debugNetPrintf(DEBUG, "--addFileLine parameters--\nconst char *line: %s\nint position: %d\n", line, position);
+    int size = this->getFileSize();
+    int line_lenght = strlen(line);
+    debugNetPrintf(DEBUG, "File size: %d\n", size);
+    if (size < 0)
+        return 0;
+    uint8_t* buffer = (uint8_t*)malloc(size);
+    int len = this->readFile(buffer, size);
+    buffer[len] = 0;
+    std::string the_file = (const char*)buffer;
+    free(buffer);
+    debugNetPrintf(DEBUG, "File readed:\n%s\n", the_file.c_str());
+    the_file.insert(position + 1, line);
+    debugNetPrintf(DEBUG, "File changed:\n%s\n", the_file.c_str());
+    int written = this->writeFile(the_file.c_str(), the_file.length());
+    if (written < 0)
+        return 0;
+    debugNetPrintf(DEBUG, "File was writting Successfully\n--finished addFileLine--\n");
+    return 1;
+}
+int File::deleteFileLine(const char *line, int position) {
+    debugNetPrintf(DEBUG, "--deleteFileLine parameters--\nconst char *line: %s\nint position: %d\n", line, position);
+    int size = this->getFileSize();
+    int line_lenght = strlen(line);
+    debugNetPrintf(DEBUG, "File size: %d\n", size);
+    if (size < 0)
+        return 0;
+    uint8_t* buffer = (uint8_t*)malloc(size);
+    int len = this->readFile(buffer, size);
+    buffer[len] = 0;
+    std::string the_file = (const char*)buffer;
+    free(buffer);
+    debugNetPrintf(DEBUG, "File readed:\n%s\n", the_file.c_str());
+    the_file.erase(position - line_lenght + 1, line_lenght + 1);
+    debugNetPrintf(DEBUG, "File changed:\n%s\n", the_file.c_str());
+    int written = this->writeFile(the_file.c_str(), the_file.length() - line_lenght);
+    if (written < 0)
+        return 0;
+    debugNetPrintf(DEBUG, "File was writting Successfully\n--finished deleteFileLine--\n");
     return 1;
 }

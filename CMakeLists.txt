@@ -52,8 +52,9 @@ add_executable(${SHORT_NAME}
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
 target_link_libraries(${SHORT_NAME}
+    debugnet
     vita2d
-    taihen_stub
+    ScePower_stub
     SceDisplay_stub
     SceGxm_stub
     SceSysmodule_stub
@@ -62,6 +63,8 @@ target_link_libraries(${SHORT_NAME}
     ScePvf_stub
     SceCommonDialog_stub
     SceIofilemgr_stub
+    SceNetCtl_stub
+	SceNet_stub
     freetype
     png
     z
@@ -87,6 +90,7 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
 
 add_custom_target(send
   COMMAND curl -T eboot.bin ftp://${PSVITAIP}:1337/ux0:/app/${VITA_TITLEID}/
+  COMMAND socat udp-recv:18194 stdout
   DEPENDS eboot.bin
 )
 

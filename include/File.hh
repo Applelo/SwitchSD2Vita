@@ -31,7 +31,11 @@ public:
 	int copyFile(const char *dst_path, FileProcessParam *param);
 	int getFileSize();
 
+	int addFileLine(const char *line, int position);
+	int findFileLine(const char *line);
+	int deleteFileLine(const char *line, int position);
 	int removeFile();
+
 
 
 };

@@ -14,6 +14,7 @@ typedef enum Step {
 	SWITCH_TO_UXO,
 	SWITCH_TO_UMAO,
 	UNINSTALL,
+	REBOOT,
 	EXIT
 } Step;
 
@@ -25,6 +26,7 @@ private:
 		"Switch to ux0",
 		"Switch to uma0",
 		"Uninstall",
+		"Reboot your PSVita",
 		"Exit"
 	};
 	Step _step;
@@ -35,7 +37,7 @@ private:
 	int _selector;
 	int _result;
 	char const *_log;
-
+	int _mustReboot;
 
 public:
 	Menu();
@@ -52,6 +54,7 @@ public:
 	void switch_to_ux0();
 	void switch_to_uma0();
 	void uninstall();
+	void reboot();
 
 };
 

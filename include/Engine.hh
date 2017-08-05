@@ -1,7 +1,6 @@
 /*
 **
-** Made by MisterAlex
-** And also Applelo (but a little)
+** Made by Applelo
 **
 */
 
@@ -11,9 +10,6 @@
 
 # include "Utils.h"
 # include "File.hh"
-extern "C" {
-	# include "../include/taiHenReload.h"
-}
 
 class Engine {
 private:
