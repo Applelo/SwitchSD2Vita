@@ -7,30 +7,20 @@
 #ifndef UTILS_H_
 # define UTILS_H_
 
-# include <debugnet.h>
+//# include <debugnet.h>
 # include <stdio.h>
-# include <stdint.h>
 # include <string.h>
-# include <math.h>
 # include <string>
 # include <stdlib.h>
 # include <psp2/io/fcntl.h>
 # include <psp2/io/stat.h>
 # include <psp2/ctrl.h>
 # include <psp2/kernel/processmgr.h>
-# include <psp2/touch.h>
 # include <psp2/power.h>
-# include <psp2/sysmodule.h>
-# include <ctime>
 # include <vector>
-# include <iostream>
-# include <map>
 # include <string>
-# include <utility>
 
 # include <vita2d.h>
-
-# define lerp(value, from_max, to_max) ((((value*10) * (to_max*10))/(from_max*10))/10)
 
 # define SCREEN_H	544
 # define SCREEN_L	960
@@ -51,8 +41,8 @@
 # define UX0_CONFIG_LOCALIZATION "ur0:tai/config_test.txt"
 
 //debugnet
-#define IP_SERVER "192.168.0.26"
-#define PORT_SERVER 18194
+//#define IP_SERVER "192.168.0.26"
+//#define PORT_SERVER 18194
 
 typedef struct {
     uint64_t *value;

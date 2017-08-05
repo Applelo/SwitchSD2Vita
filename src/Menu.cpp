@@ -29,7 +29,19 @@ void Menu::main() {
 	}
 	vita2d_pgf_draw_text(_pgf, 20, (40 * _selector), WHITE, 1.2, ">");
 
-	vita2d_pgf_draw_textf(_pgf, 50, 300, (_result) ? GREEN : RED , 1.0,"%s", _log);
+	vita2d_pgf_draw_textf(_pgf, 50, 300, (_result) ? GREEN : RED , 1.0, "%s", _log);
+
+	switch (_engine->getSetup()) {
+		case Setup::UX0:
+			vita2d_pgf_draw_text(_pgf, 50, 500, GREEN, 1.0, "Installed in ux0:");
+			break;
+		case Setup::UMA0:
+   	   		vita2d_pgf_draw_text(_pgf, 50, 500, GREEN, 1.0, "Installed in uma0:");
+   	   		break;
+		default:
+			vita2d_pgf_draw_text(_pgf, 50, 500, WHITE, 1.0, "Not installed");
+			break;
+	}
 
 
 	vita2d_pgf_draw_text(_pgf, 700, 450, WHITE, 1.3, "Switch SD2Vita");
