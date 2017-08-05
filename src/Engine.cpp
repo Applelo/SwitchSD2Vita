@@ -8,6 +8,7 @@
 
 
 Engine::Engine() {
+	_setup = this->calcSetup();
 }
 
 Engine::~Engine() {
@@ -44,6 +45,7 @@ int Engine::switch_to_ux0() {
 
 	_file->addFileLine("\nur0:tai/gamesd_ux0.skprx", _file->findFileLine("*KERNEL"));
 	sceKernelDelayThread(10000);
+	_setup = UX0;
 	return 1;
 }
 
@@ -78,6 +80,7 @@ int Engine::switch_to_uma0() {
 
 	_file->addFileLine("\nur0:tai/gamesd_uma0.skprx", _file->findFileLine("*KERNEL"));
 	sceKernelDelayThread(10000);
+	_setup = UMA0;
 	return 1;
 }
 
@@ -100,5 +103,29 @@ int Engine::uninstall() {
 		_file->deleteFileLine("\nur0:tai/gamesd_uma0.skprx", _file->findFileLine("\nur0:tai/gamesd_uma0.skprx"));
 
 	sceKernelDelayThread(10000);
+	_setup = NO;
 	return 1;
+}
+
+//Setter
+void Engine::setSetup(const Setup setup) {
+	_setup = setup;
+}
+
+//Getter
+const Setup Engine::getSetup() {
+	return _setup;
+}
+
+const Setup Engine::calcSetup() {
+	_setup = NO;
+
+	_file = new File(UX0_LOCALIZATION);
+	if (_file->checkFileExist())
+		_setup = UX0;
+	_file = new File(UMA0_LOCALIZATION);
+	if (_file->checkFileExist())
+		_setup = UMA0;
+
+	return _setup;
 }

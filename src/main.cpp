@@ -12,7 +12,7 @@ int main() {
 	int run = 1;
 
 	sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-	debugNetInit(IP_SERVER, PORT_SERVER, DEBUG);
+	//debugNetInit(IP_SERVER, PORT_SERVER, DEBUG);
 
 	vita2d_init();
 	vita2d_set_clear_color(RGBA8(0x00, 0x00, 0x00, 0xFF));
@@ -41,7 +41,7 @@ int main() {
 		vita2d_swap_buffers();
 	}
 	vita2d_fini();
-	debugNetFinish();
+//	debugNetFinish();
 
 	sceKernelExitProcess(0);
 	return (0);

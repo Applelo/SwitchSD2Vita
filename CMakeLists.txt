@@ -52,7 +52,7 @@ add_executable(${SHORT_NAME}
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
 target_link_libraries(${SHORT_NAME}
-    debugnet
+    #debugnet
     vita2d
     ScePower_stub
     SceDisplay_stub
@@ -60,16 +60,9 @@ target_link_libraries(${SHORT_NAME}
     SceSysmodule_stub
     SceCtrl_stub
     ScePgf_stub
-    ScePvf_stub
     SceCommonDialog_stub
     SceIofilemgr_stub
-    SceNetCtl_stub
-	SceNet_stub
     freetype
-    png
-    z
-    m
-    c
     stdc++
     gcc
 )
