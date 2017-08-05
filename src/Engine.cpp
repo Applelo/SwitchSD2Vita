@@ -8,7 +8,6 @@
 
 
 Engine::Engine() {
-	int _result;
 }
 
 Engine::~Engine() {
@@ -16,63 +15,90 @@ Engine::~Engine() {
 
 int Engine::switch_to_ux0() {
 	//remove old installation if exist
-	_file = new File("ur0:tai/gamesd_uma0.skprx");
+	_file = new File(UMA0_LOCALIZATION);
 	if (_file->checkFileExist())
 		_file->removeFile();
+	_file = new File(UMA0_CONFIG_LOCALIZATION);
+	if (_file->findFileLine(UMA0_LOCALIZATION) > 0)
+		_file->deleteFileLine("\nur0:tai/gamesd_uma0.skprx", _file->findFileLine("\nur0:tai/gamesd_uma0.skprx"));
+	sceKernelDelayThread(10000);
 
 	//copy ux0 plugin
-	_file = new File("app0:plugins/gamesd_ux0.skprx");
-	_result = _file->copyFile("ur0:tai/gamesd_ux0.skprx", NULL);
-	if (!_result)
+	_file = new File(UX0_APP_LOCALIZATION);
+
+	if (_file->checkFileExist()) {
+		_result = _file->copyFile(UX0_LOCALIZATION, NULL);
+		if (!_result)
+			return 0;
+	}
+	else {
+		return 0;
+	}
+	sceKernelDelayThread(10000);
+
+	_file = new File(UX0_CONFIG_LOCALIZATION);
+	if (_file->findFileLine("*KERNEL") < 0)
+		return 0;
+	if (_file->findFileLine(UX0_LOCALIZATION) > 0)
 		return 0;
 
-	//reload taiHen config
-	taiReloadConfig();
-
-	//_console->pushLog("Copied!");
+	_file->addFileLine("\nur0:tai/gamesd_ux0.skprx", _file->findFileLine("*KERNEL"));
+	sceKernelDelayThread(10000);
 	return 1;
 }
 
 int Engine::switch_to_uma0() {
 	//remove old installation if exist
-	_file = new File("ur0:tai/gamesd_ux0.skprx");
+	_file = new File(UX0_LOCALIZATION);
 	if (_file->checkFileExist())
 		_file->removeFile();
+	_file = new File(UX0_CONFIG_LOCALIZATION);
+	if (_file->findFileLine(UX0_LOCALIZATION) > 0)
+		_file->deleteFileLine("\nur0:tai/gamesd_ux0.skprx", _file->findFileLine("\nur0:tai/gamesd_ux0.skprx"));
 
+	sceKernelDelayThread(10000);
 	//copy uma0 plugin
-	_file = new File("app0:plugins/gamesd_uma0.skprx");
-	_result = _file->copyFile("ur0:tai/gamesd_uma0.skprx", NULL);
-	if (!_result)
+	_file = new File(UMA0_APP_LOCALIZATION);
+
+	if (_file->checkFileExist()) {
+		_result = _file->copyFile(UMA0_LOCALIZATION, NULL);
+		if (!_result)
+			return 0;
+	}
+	else {
+		return 0;
+	}
+	sceKernelDelayThread(10000);
+
+	_file = new File(UMA0_CONFIG_LOCALIZATION);
+	if (_file->findFileLine("*KERNEL") < 0)
+		return 0;
+	if (_file->findFileLine(UMA0_LOCALIZATION) > 0)
 		return 0;
 
-	//reload taiHen config
-	taiReloadConfig();
-
+	_file->addFileLine("\nur0:tai/gamesd_uma0.skprx", _file->findFileLine("*KERNEL"));
+	sceKernelDelayThread(10000);
 	return 1;
 }
 
 int Engine::uninstall() {
-
 	//Remove plugin
-	_file = new File("ur0:tai/gamesd_ux0.skprx");
+	_file = new File(UX0_LOCALIZATION);
 	if (_file->checkFileExist())
 		_file->removeFile();
-	_file = new File("ur0:tai/gamesd_uma0.skprx");
+	_file = new File(UX0_CONFIG_LOCALIZATION);
+	if (_file->findFileLine(UX0_LOCALIZATION) > 0)
+		_file->deleteFileLine("\nur0:tai/gamesd_ux0.skprx", _file->findFileLine("\nur0:tai/gamesd_ux0.skprx"));
+
+	sceKernelDelayThread(10000);
+
+	_file = new File(UMA0_LOCALIZATION);
 	if (_file->checkFileExist())
 		_file->removeFile();
+	_file = new File(UMA0_CONFIG_LOCALIZATION);
+	if (_file->findFileLine(UMA0_LOCALIZATION) > 0)
+		_file->deleteFileLine("\nur0:tai/gamesd_uma0.skprx", _file->findFileLine("\nur0:tai/gamesd_uma0.skprx"));
 
-
-	//uint8_t* buffer = (uint8_t*)malloc(0);
-
-	_file = new File("ur0:/tai/config.txt");
-	int size = _file->getFileSize();
-	if(size < 0)
-        return 0;
-	char buffer[size];
-	_file->readFile(buffer, size);
-
-	//reload taiHen config
-	taiReloadConfig();
-
+	sceKernelDelayThread(10000);
 	return 1;
 }
