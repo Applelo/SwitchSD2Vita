@@ -49,7 +49,7 @@ int File::readFile(void *buf, int size) {
 }
 
 int File::writeFile(const void *buf, int size) {
-	SceUID fd = sceIoOpen(_file, SCE_O_WRONLY | SCE_O_CREAT, 0);
+	SceUID fd = sceIoOpen(_file, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
 	if (fd < 0)
 		return fd;
 
@@ -232,11 +232,11 @@ int File::deleteFileLine(const char *line, int position) {
     std::string the_file = (const char*)buffer;
     free(buffer);
     //debugNetPrintf(DEBUG, "File readed:\n%s\n", the_file.c_str());
-    the_file.erase(position - line_lenght + 1, line_lenght + 1);
-    //debugNetPrintf(DEBUG, "File changed:\n%s\n", the_file.c_str());
-    int written = this->writeFile(the_file.c_str(), the_file.length() - line_lenght);
+    the_file.erase(position - line_lenght + 1, line_lenght);
+    int written = this->writeFile(the_file.c_str(), the_file.length());
     if (written < 0)
-        return 0;
+         return 0;
+
     //debugNetPrintf(DEBUG, "File was writting Successfully\n--finished deleteFileLine--\n");
     return 1;
 }

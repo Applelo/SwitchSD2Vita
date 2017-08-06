@@ -1,7 +1,6 @@
 /*
 **
-** Made by MisterAlex
-** And also Applelo (but a little)
+** Made by Applelo
 **
 */
 
@@ -41,7 +40,7 @@ int main() {
 		vita2d_swap_buffers();
 	}
 	vita2d_fini();
-//	debugNetFinish();
+	//debugNetFinish();
 
 	sceKernelExitProcess(0);
 	return (0);

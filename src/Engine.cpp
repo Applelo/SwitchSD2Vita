@@ -22,7 +22,7 @@ int Engine::switch_to_ux0() {
 	_file = new File(UMA0_CONFIG_LOCALIZATION);
 	if (_file->findFileLine(UMA0_LOCALIZATION) > 0)
 		_file->deleteFileLine("\nur0:tai/gamesd_uma0.skprx", _file->findFileLine("\nur0:tai/gamesd_uma0.skprx"));
-	sceKernelDelayThread(10000);
+
 
 	//copy ux0 plugin
 	_file = new File(UX0_APP_LOCALIZATION);
@@ -35,7 +35,7 @@ int Engine::switch_to_ux0() {
 	else {
 		return 0;
 	}
-	sceKernelDelayThread(10000);
+
 
 	_file = new File(UX0_CONFIG_LOCALIZATION);
 	if (_file->findFileLine("*KERNEL") < 0)
@@ -44,7 +44,7 @@ int Engine::switch_to_ux0() {
 		return 0;
 
 	_file->addFileLine("\nur0:tai/gamesd_ux0.skprx", _file->findFileLine("*KERNEL"));
-	sceKernelDelayThread(10000);
+
 	_setup = UX0;
 	return 1;
 }
@@ -58,7 +58,7 @@ int Engine::switch_to_uma0() {
 	if (_file->findFileLine(UX0_LOCALIZATION) > 0)
 		_file->deleteFileLine("\nur0:tai/gamesd_ux0.skprx", _file->findFileLine("\nur0:tai/gamesd_ux0.skprx"));
 
-	sceKernelDelayThread(10000);
+
 	//copy uma0 plugin
 	_file = new File(UMA0_APP_LOCALIZATION);
 
@@ -70,7 +70,7 @@ int Engine::switch_to_uma0() {
 	else {
 		return 0;
 	}
-	sceKernelDelayThread(10000);
+
 
 	_file = new File(UMA0_CONFIG_LOCALIZATION);
 	if (_file->findFileLine("*KERNEL") < 0)
@@ -79,7 +79,7 @@ int Engine::switch_to_uma0() {
 		return 0;
 
 	_file->addFileLine("\nur0:tai/gamesd_uma0.skprx", _file->findFileLine("*KERNEL"));
-	sceKernelDelayThread(10000);
+
 	_setup = UMA0;
 	return 1;
 }
@@ -93,7 +93,7 @@ int Engine::uninstall() {
 	if (_file->findFileLine(UX0_LOCALIZATION) > 0)
 		_file->deleteFileLine("\nur0:tai/gamesd_ux0.skprx", _file->findFileLine("\nur0:tai/gamesd_ux0.skprx"));
 
-	sceKernelDelayThread(10000);
+
 
 	_file = new File(UMA0_LOCALIZATION);
 	if (_file->checkFileExist())
@@ -102,7 +102,7 @@ int Engine::uninstall() {
 	if (_file->findFileLine(UMA0_LOCALIZATION) > 0)
 		_file->deleteFileLine("\nur0:tai/gamesd_uma0.skprx", _file->findFileLine("\nur0:tai/gamesd_uma0.skprx"));
 
-	sceKernelDelayThread(10000);
+
 	_setup = NO;
 	return 1;
 }
