@@ -29,7 +29,7 @@
 # define LIGHT_GREEN RGBA8(50, 205, 50, 255)
 # define RED RGBA8(255, 0, 0, 255)
 # define LIGHT_GREY RGBA8(180, 180, 180, 255)
-# define VERSION_NUMBER 0.5
+# define VERSION_NUMBER 1.0
 
 //File
 # define TRANSFER_SIZE (64 * 1024)
@@ -37,8 +37,8 @@
 # define UX0_APP_LOCALIZATION "app0:plugins/gamesd_ux0.skprx"
 # define UMA0_LOCALIZATION "ur0:tai/gamesd_uma0.skprx"
 # define UX0_LOCALIZATION "ur0:tai/gamesd_ux0.skprx"
-# define UMA0_CONFIG_LOCALIZATION "ux0:tai/config_test.txt"
-# define UX0_CONFIG_LOCALIZATION "ur0:tai/config_test.txt"
+# define UMA0_CONFIG_LOCALIZATION "ux0:tai/config.txt"
+# define UX0_CONFIG_LOCALIZATION "ur0:tai/config.txt"
 
 //debugnet
 //#define IP_SERVER "192.168.0.26"

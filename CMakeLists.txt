@@ -65,6 +65,8 @@ target_link_libraries(${SHORT_NAME}
     freetype
     stdc++
     gcc
+    #SceNet_stub
+    #SceNetCtl_stub
 )
 
 
@@ -73,8 +75,9 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
   FILE  sce_sys/icon0.png sce_sys/icon0.png
+        sce_sys/livearea/pic0.png sce_sys/pic0.png
         sce_sys/livearea/contents/bg.png sce_sys/livearea/contents/bg.png
-        sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
+        #sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
         sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
         plugins/gamesd_ux0.skprx plugins/gamesd_ux0.skprx
         plugins/gamesd_uma0.skprx plugins/gamesd_uma0.skprx
@@ -83,7 +86,7 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
 
 add_custom_target(send
   COMMAND curl -T eboot.bin ftp://${PSVITAIP}:1337/ux0:/app/${VITA_TITLEID}/
-  COMMAND socat udp-recv:18194 stdout
+  #COMMAND socat udp-recv:18194 stdout
   DEPENDS eboot.bin
 )
 
