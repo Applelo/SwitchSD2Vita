@@ -77,7 +77,7 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
   FILE  sce_sys/icon0.png sce_sys/icon0.png
         sce_sys/livearea/pic0.png sce_sys/pic0.png
         sce_sys/livearea/contents/bg.png sce_sys/livearea/contents/bg.png
-        #sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
+        sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
         sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
         plugins/gamesd_ux0.skprx plugins/gamesd_ux0.skprx
         plugins/gamesd_uma0.skprx plugins/gamesd_uma0.skprx

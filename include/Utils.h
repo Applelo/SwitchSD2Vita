@@ -22,13 +22,14 @@
 
 # include <vita2d.h>
 
-# define SCREEN_H	544
 # define SCREEN_L	960
+# define SCREEN_H	544
 # define WHITE RGBA8(255, 255, 255, 255)
 # define GREEN RGBA8(0, 255, 0, 255)
 # define LIGHT_GREEN RGBA8(50, 205, 50, 255)
 # define RED RGBA8(255, 0, 0, 255)
 # define LIGHT_GREY RGBA8(180, 180, 180, 255)
+# define BACKGROUND RGBA8(36, 41, 45, 255)
 # define VERSION_NUMBER 1.0
 
 //File
