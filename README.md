@@ -1,5 +1,10 @@
 # Switch SD2Vita
-Switch SD memory between ux0 and uma0 memory easily!
+### Switch SD memory between ux0: and uma0: memory easily!
+
+
+The homebrew simplify the SD2Vita setup. You can install your SD like ux0: memory or uma0:. You must reboot your console after.
+
+
 
 ## Build
 Install **VitaSDK** with [**VDPM**](https://github.com/vitasdk/vdpm) and run the followed commands :
@@ -32,5 +37,3 @@ make copy_vpk
 * *The_FloW* for file function
 * *Rinnegatamente* because I steal a part of your work :p
 * My master, *MisterAlex*
-
-

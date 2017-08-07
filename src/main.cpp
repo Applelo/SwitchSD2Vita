@@ -21,6 +21,7 @@ int main() {
 	while (run) {
 		vita2d_start_drawing();
 		vita2d_clear_screen();
+		vita2d_draw_rectangle(0, 0, SCREEN_L, SCREEN_H, BACKGROUND);
 
 		if (menu->getMenu() == Step::MAIN)
 			menu->main();
