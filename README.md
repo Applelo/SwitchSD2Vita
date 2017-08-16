@@ -1,10 +1,22 @@
 # Switch SD2Vita
-### Switch SD memory between ux0: and uma0: memory easily!
+### SD2Vita drivers manager and Switch SD memory between ux0: and uma0: memory easily!
 
+This application simplify the setup to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.
 
-The homebrew simplify the SD2Vita setup. You can install your SD like ux0: memory or uma0:. You must reboot your console after.
+## F.A.Q
 
+###Where can I downloaded it?
+You can download [here](https://github.com/Applelo/SwitchSD2Vita/releases) and install like an PSVita homebrew.
+But the application is also available on [VitaDB](https://vitadb.rinnegatamante.it/#/info/294) and so you can install it thanks to [Vita Homebrew Browser](https://github.com/devnoname120/vhbb).
 
+###The homebrew includes both plugins (gamesd for ux0 and uma0)?
+Yes. Just install this homebrew to manage your plugin installation.
+
+###How to disable the SD2Vita plugin
+Just use uninstall option to disable the plugin.
+
+###Can I use without SD2Vita card?
+No. Why? Because... Ok :)
 
 ## Build
 Install **VitaSDK** with [**VDPM**](https://github.com/vitasdk/vdpm) and run the followed commands :
