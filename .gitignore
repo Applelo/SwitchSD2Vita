@@ -8,6 +8,7 @@
 *.self
 
 switch_sd2vita
+.DS_Store
 
 # CMake data
 CMakeCache.txt
