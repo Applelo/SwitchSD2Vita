@@ -5,7 +5,7 @@ This application simplify the setup to install and manage SD2VITA drivers for bo
 
 ## F.A.Q
 
-### Where can I downloaded it?
+### Where can I download it?
 
 You can download [here](https://github.com/Applelo/SwitchSD2Vita/releases) and install like an PSVita homebrew.
 But the application is also available on [VitaDB](https://vitadb.rinnegatamante.it/#/info/294) and so you can install it thanks to [Vita Homebrew Browser](https://github.com/devnoname120/vhbb).
