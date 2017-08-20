@@ -30,7 +30,7 @@
 # define RED RGBA8(255, 0, 0, 255)
 # define LIGHT_GREY RGBA8(180, 180, 180, 255)
 # define BACKGROUND RGBA8(36, 41, 45, 255)
-# define VERSION_NUMBER 1.0
+# define VERSION_NUMBER 1.1
 
 //File
 # define TRANSFER_SIZE (64 * 1024)
