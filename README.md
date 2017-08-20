@@ -42,6 +42,7 @@ make copy_vpk
 
 ## Credits
 
+* *yosh778* who added great features and fix :)
 * *Tuxbot123* for the idea and the bubble customization
 * *Team Molecule* for HENkaku and taihen
 * [*xyzz* for PS Vita gamecard to microSD adapter](https://github.com/xyzz/gamecard-microsd)
