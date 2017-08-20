@@ -15,7 +15,8 @@ typedef enum Step {
 	SWITCH_TO_UMAO,
 	UNINSTALL,
 	REBOOT,
-	EXIT
+	EXIT,
+	AUTO_SWITCH
 } Step;
 
 
@@ -23,6 +24,7 @@ typedef enum Step {
 class Menu {
 private:
 	std::vector<std::string> _mainMenu = {
+		"Auto switch",
 		"Switch to ux0",
 		"Switch to uma0",
 		"Uninstall",
@@ -51,6 +53,7 @@ public:
 
 	//Display Menu
 	void main();
+	void auto_switch();
 	void switch_to_ux0();
 	void switch_to_uma0();
 	void uninstall();

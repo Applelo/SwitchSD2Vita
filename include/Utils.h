@@ -38,7 +38,8 @@
 # define UX0_APP_LOCALIZATION "app0:plugins/gamesd_ux0.skprx"
 # define UMA0_LOCALIZATION "ur0:tai/gamesd_uma0.skprx"
 # define UX0_LOCALIZATION "ur0:tai/gamesd_ux0.skprx"
-# define UMA0_CONFIG_LOCALIZATION "ux0:tai/config.txt"
+//# define UMA0_CONFIG_LOCALIZATION "ux0:tai/config.txt"
+# define UMA0_CONFIG_LOCALIZATION "ur0:tai/config.txt"
 # define UX0_CONFIG_LOCALIZATION "ur0:tai/config.txt"
 
 //debugnet
