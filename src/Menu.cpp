@@ -22,8 +22,10 @@ void Menu::main() {
 
 	//Display Txt
 	for (int i = 0; i < _mainMenu.size(); i++) {
-		if (i != 3)
+		if (i != 4 && i)
 			vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_selector == (i+1)) ? WHITE : LIGHT_GREY, 1.2, "%s", _mainMenu[i].c_str());
+		else if (i == 0)
+			vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_selector == (i+1)) ? GREEN : LIGHT_GREEN, 1.2, "%s", _mainMenu[i].c_str());
 		else
 			vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_mustReboot) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY) , 1.2, "%s", _mainMenu[i].c_str());
 	}
@@ -36,8 +38,8 @@ void Menu::main() {
 			vita2d_pgf_draw_text(_pgf, 50, 500, GREEN, 1.0, "Installed in ux0:");
 			break;
 		case Setup::UMA0:
-   	   		vita2d_pgf_draw_text(_pgf, 50, 500, GREEN, 1.0, "Installed in uma0:");
-   	   		break;
+			vita2d_pgf_draw_text(_pgf, 50, 500, GREEN, 1.0, "Installed in uma0:");
+			break;
 		default:
 			vita2d_pgf_draw_text(_pgf, 50, 500, WHITE, 1.0, "Not installed");
 			break;
@@ -58,35 +60,48 @@ void Menu::main() {
 	if (_ctrl_press.buttons & SCE_CTRL_DOWN)
 		_selector++;
 
-	if (_selector > 5)
+	if (_selector > _mainMenu.size())
 		_selector = 1;
 	if (_selector < 1)
-		_selector = 5;
+		_selector = _mainMenu.size();
 
 	if (_ctrl_press.buttons & SCE_CTRL_CROSS) {
 		switch (_selector) {
-	      case 1:
-	        _step = SWITCH_TO_UXO;
-	        break;
+		  case 1:
+			_step = AUTO_SWITCH;
+			break;
 
-	      case 2:
-	        _step = SWITCH_TO_UMAO;
-	        break;
+		  case 2:
+			_step = SWITCH_TO_UXO;
+			break;
 
-	      case 3:
-	        _step = UNINSTALL;
-	        break;
+		  case 3:
+			_step = SWITCH_TO_UMAO;
+			break;
 
 		  case 4:
+			_step = UNINSTALL;
+			break;
+
+		  case 5:
 			_step = REBOOT;
 			break;
 
-	       case 5:
-	        _step = EXIT;
-	        break;
-	    }
+		  case 6:
+			_step = EXIT;
+			break;
+		}
 	}
 
+}
+
+void Menu::auto_switch() {
+
+	if ( _engine->getSetup() == UX0 )
+		switch_to_uma0();
+
+	else
+		switch_to_ux0();
 }
 
 void Menu::switch_to_ux0() {
