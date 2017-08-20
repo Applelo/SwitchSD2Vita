@@ -25,6 +25,8 @@ int main() {
 
 		if (menu->getMenu() == Step::MAIN)
 			menu->main();
+		if (menu->getMenu() == Step::AUTO_SWITCH)
+			menu->auto_switch();
 		if (menu->getMenu() == Step::SWITCH_TO_UXO)
 			menu->switch_to_ux0();
 		if (menu->getMenu() == Step::SWITCH_TO_UMAO)
