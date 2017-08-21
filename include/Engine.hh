@@ -26,6 +26,7 @@ public:
 	Engine();
 	virtual ~Engine();
 
+	int auto_switch();
 	int switch_to_ux0();
 	int switch_to_uma0();
 	int uninstall();
@@ -37,6 +38,7 @@ public:
 	const Setup getSetup();
 
 	const Setup calcSetup();
+	const bool isOldInstallation();
 
 };
 #endif /* !ENGINE_HH_ */

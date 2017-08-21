@@ -10,9 +10,10 @@ Menu::Menu() {
 	_pgf = vita2d_load_default_pgf();
 	_engine = new Engine();
 	_step = MAIN;
-	_selector = 1;
+	_selector = ((_engine->getSetup() == NO) ? 2 : 1);
 	_log = "";
-	_mustReboot = 0;
+	_mustReboot = false;
+	_oldInstall = _engine->isOldInstallation();
 }
 
 Menu::~Menu() {
@@ -21,13 +22,21 @@ Menu::~Menu() {
 void Menu::main() {
 
 	//Display Txt
-	for (int i = 0; i < _mainMenu.size(); i++) {
-		if (i != 4 && i)
-			vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_selector == (i+1)) ? WHITE : LIGHT_GREY, 1.2, "%s", _mainMenu[i].c_str());
-		else if (i == 0)
-			vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_selector == (i+1)) ? GREEN : LIGHT_GREEN, 1.2, "%s", _mainMenu[i].c_str());
-		else
-			vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_mustReboot) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY) , 1.2, "%s", _mainMenu[i].c_str());
+	for (int i = ((_engine->getSetup() == NO) ? 1 : 0); i < _mainMenu.size(); i++) {
+		switch (i) {
+			case 0:
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_selector == (i+1)) ? WHITE : LIGHT_GREY, 1.2, "%s (%s)", _mainMenu[i].c_str(), (_engine->getSetup() == UX0) ? "ux0 to uma0" : "uma0 to ux0");
+				break;
+			case 3:
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_oldInstall) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY), 1.2, "%s", _mainMenu[i].c_str());
+				break;
+			case 4:
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_mustReboot) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY) , 1.2, "%s", _mainMenu[i].c_str());
+				break;
+			default:
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i+1), (_selector == (i+1)) ? WHITE : LIGHT_GREY, 1.2, "%s", _mainMenu[i].c_str());
+				break;
+		}
 	}
 	vita2d_pgf_draw_text(_pgf, 20, (40 * _selector), WHITE, 1.2, ">");
 
@@ -35,20 +44,22 @@ void Menu::main() {
 
 	switch (_engine->getSetup()) {
 		case Setup::UX0:
-			vita2d_pgf_draw_text(_pgf, 50, 500, GREEN, 1.0, "Installed in ux0:");
+			vita2d_pgf_draw_text(_pgf, 50, 450, GREEN, 1.0, "Installed in ux0:");
 			break;
 		case Setup::UMA0:
-			vita2d_pgf_draw_text(_pgf, 50, 500, GREEN, 1.0, "Installed in uma0:");
+			vita2d_pgf_draw_text(_pgf, 50, 450, GREEN, 1.0, "Installed in uma0:");
 			break;
 		default:
-			vita2d_pgf_draw_text(_pgf, 50, 500, WHITE, 1.0, "Not installed");
+			vita2d_pgf_draw_text(_pgf, 50, 450, WHITE, 1.0, "Not installed");
 			break;
 	}
 
+	if (_oldInstall)
+		vita2d_pgf_draw_text(_pgf, 50, 500, RED, 1.0, "You have an old installation.\nUse uninstall option to access to other option.");
 
-	vita2d_pgf_draw_text(_pgf, 700, 450, WHITE, 1.3, "Switch SD2Vita");
-	vita2d_pgf_draw_textf(_pgf, 900, 450, WHITE, 0.9,"%0.1f", VERSION_NUMBER);
-	vita2d_pgf_draw_text(_pgf, 740, 500, WHITE, 1.0, "A Tuxbot123 idea\n\nDeveloped by Applelo");
+	vita2d_pgf_draw_text(_pgf, 650, 450, WHITE, 1.3, "Switch SD2Vita");
+	vita2d_pgf_draw_textf(_pgf, 850, 450, WHITE, 0.9,"%0.1f", VERSION_NUMBER);
+	vita2d_pgf_draw_text(_pgf, 650, 500, WHITE, 1.0, "A Tuxbot123 idea\n\nDeveloped by Applelo & Yosh");
 
 	//Controls
 	_ctrl_press = _ctrl_peek;
@@ -61,8 +72,8 @@ void Menu::main() {
 		_selector++;
 
 	if (_selector > _mainMenu.size())
-		_selector = 1;
-	if (_selector < 1)
+		_selector = ((_engine->getSetup() == NO) ? 2 : 1);
+	if (_selector < ((_engine->getSetup() == NO) ? 2 : 1))
 		_selector = _mainMenu.size();
 
 	if (_ctrl_press.buttons & SCE_CTRL_CROSS) {
@@ -96,19 +107,29 @@ void Menu::main() {
 }
 
 void Menu::auto_switch() {
-
-	if ( _engine->getSetup() == UX0 )
-		switch_to_uma0();
-
+	if (_oldInstall)
+		_result = 0;
 	else
-		switch_to_ux0();
+		_result = _engine->auto_switch();
+
+	if (_result == 1) {
+		_log = "Sucess to switch !.\nYou must reboot your PSVita to apply change.";
+	}
+	else
+		_log = "Fail to switch.\nUse uninstall option and retry.";
+
+	_step = MAIN;
 }
 
 void Menu::switch_to_ux0() {
-	_result = _engine->switch_to_ux0();
+	if (_oldInstall)
+		_result = 0;
+	else
+		_result = _engine->switch_to_ux0();
+
 	if (_result) {
 		_log = "Success to switch to ux0.\nYou must reboot your PSVita to apply change.";
-		_mustReboot = 1;
+		_mustReboot = true;
 	}
 	else
 		_log = "Fail to switch to ux0.\nUse Uninstall option and retry.";
@@ -117,10 +138,14 @@ void Menu::switch_to_ux0() {
 }
 
 void Menu::switch_to_uma0() {
-	_result = _engine->switch_to_uma0();
+	if (_oldInstall)
+		_result = 0;
+	else
+		_result = _engine->switch_to_uma0();
+
 	if (_result) {
 		_log = "Success to switch to uma0.\nYou must reboot your PSVita to apply change.";
-		_mustReboot = 1;
+		_mustReboot = true;
 	}
 	else
 		_log = "Fail to switch to uma0.\nUse Uninstall option and retry.";
@@ -131,10 +156,12 @@ void Menu::uninstall() {
 	_result = _engine->uninstall();
 	if (_result) {
 		_log = "Success to uninstall files.\nYou must reboot your PSVita to apply change.";
-		_mustReboot = 1;
+		_mustReboot = true;
 	}
 	else
 		_log = "Fail to uninstall...";
+	// if (_oldInstall)
+	// 	_oldInstall = _engine->isOldInstallation();
 	_step = MAIN;
 }
 

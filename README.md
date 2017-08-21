@@ -3,7 +3,33 @@
 
 This application simplify the setup to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.
 
+## Changelog
+
+### Version 1.2 - The small Update
+
+- Detect old installation (1.0 version with uma0 config)
+- Small change in menu
+- Fix, always fix :)
+
+### Version 1.1 - Yosh Update
+
+- Now using ur0 config exclusively
+- Added auto-switch feature
+- Fixed some stuff
+
+### Version 1.0 - First Version
+
+- Initial Release
+
 ## F.A.Q
+
+### I use the version 1.0, Can I update ?
+
+Yes, you can. Since SwitchSD2Vita 1.2, the homebrew detect if you have an old installation (only for uma0 installation). You just need to edit manually the file ux0:/tai/config.txt and remove the line :
+
+```
+ur0:/config/gamesd_uma0.skprx
+```
 
 ### Where can I download it?
 
@@ -42,7 +68,7 @@ make copy_vpk
 
 ## Credits
 
-* *yosh778* who added great features and fix :)
+* Developped by *Appelo* and by *yosh778*, who added great features and fix :)
 * *Tuxbot123* for the idea and the bubble customization
 * *Team Molecule* for HENkaku and taihen
 * [*xyzz* for PS Vita gamecard to microSD adapter](https://github.com/xyzz/gamecard-microsd)
