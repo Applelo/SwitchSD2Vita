@@ -39,7 +39,8 @@ private:
 	int _selector;
 	int _result;
 	char const *_log;
-	int _mustReboot;
+	bool _mustReboot;
+	bool _oldInstall;
 
 public:
 	Menu();

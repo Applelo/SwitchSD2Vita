@@ -30,7 +30,7 @@ set(VITA_APP_NAME "Switch SD2Vita")
 
 set(VITA_TITLEID  "SWITCHSDV")
 # Optional version string to show in LiveArea's more info screen
-set(VITA_VERSION  "01.00")
+set(VITA_VERSION  "01.20")
 
 ## Flags and includes for building
 # Note that we make sure not to overwrite previous flags
@@ -74,13 +74,13 @@ vita_create_self(eboot.bin ${SHORT_NAME} UNSAFE)
 vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
-  FILE  sce_sys/icon0.png sce_sys/icon0.png
-        sce_sys/livearea/pic0.png sce_sys/pic0.png
-        sce_sys/livearea/contents/bg.png sce_sys/livearea/contents/bg.png
-        sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
-        sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
-        plugins/gamesd_ux0.skprx plugins/gamesd_ux0.skprx
-        plugins/gamesd_uma0.skprx plugins/gamesd_uma0.skprx
+  # FILE  sce_sys/icon0.png sce_sys/icon0.png
+  #       sce_sys/livearea/pic0.png sce_sys/pic0.png
+  #       sce_sys/livearea/contents/bg.png sce_sys/livearea/contents/bg.png
+  #       sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
+  #       sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
+  #       plugins/gamesd_ux0.skprx plugins/gamesd_ux0.skprx
+  #       plugins/gamesd_uma0.skprx plugins/gamesd_uma0.skprx
 )
 
 

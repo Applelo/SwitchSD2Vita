@@ -14,12 +14,20 @@ Engine::Engine() {
 Engine::~Engine() {
 }
 
+int Engine::auto_switch() {
+		if (_setup == UMA0)
+			return this->switch_to_ux0();
+		else
+			return this->switch_to_uma0();
+}
+
+
 int Engine::switch_to_ux0() {
 	//remove old installation if exist
 	//_file = new File(UMA0_LOCALIZATION);
 	//if (_file->checkFileExist())
 	//	_file->removeFile();
-	_file = new File(UMA0_CONFIG_LOCALIZATION);
+	_file = new File(CONFIG_LOCALIZATION);
 	if (_file->findFileLine("\n" UMA0_LOCALIZATION) > 0)
 		_file->deleteFileLine("\n" UMA0_LOCALIZATION, _file->findFileLine("\n" UMA0_LOCALIZATION));
 
@@ -47,7 +55,7 @@ int Engine::switch_to_ux0() {
 
 
 
-	_file = new File(UX0_CONFIG_LOCALIZATION);
+	_file = new File(CONFIG_LOCALIZATION);
 	if (_file->findFileLine("*KERNEL") < 0)
 		return 0;
 	if (_file->findFileLine("\n" UX0_LOCALIZATION) > 0)
@@ -65,7 +73,7 @@ int Engine::switch_to_uma0() {
 	// _file = new File(UX0_LOCALIZATION);
 	// if (_file->checkFileExist())
 	// 	_file->removeFile();
-	_file = new File(UX0_CONFIG_LOCALIZATION);
+	_file = new File(CONFIG_LOCALIZATION);
 	if (_file->findFileLine("\n" UX0_LOCALIZATION) > 0)
 		_file->deleteFileLine("\n" UX0_LOCALIZATION, _file->findFileLine("\n" UX0_LOCALIZATION));
 
@@ -94,7 +102,7 @@ int Engine::switch_to_uma0() {
 	delete _file;
 
 
-	_file = new File(UMA0_CONFIG_LOCALIZATION);
+	_file = new File(CONFIG_LOCALIZATION);
 	if (_file->findFileLine("*KERNEL") < 0)
 		return 0;
 	if (_file->findFileLine("\n" UMA0_LOCALIZATION) > 0)
@@ -111,7 +119,7 @@ int Engine::uninstall() {
 	// _file = new File(UX0_LOCALIZATION);
 	// if (_file->checkFileExist())
 	// 	_file->removeFile();
-	_file = new File(UX0_CONFIG_LOCALIZATION);
+	_file = new File(CONFIG_LOCALIZATION);
 	if (_file->findFileLine("\n" UX0_LOCALIZATION) > 0)
 		_file->deleteFileLine("\n" UX0_LOCALIZATION, _file->findFileLine("\n" UX0_LOCALIZATION));
 
@@ -120,11 +128,16 @@ int Engine::uninstall() {
 	// _file = new File(UMA0_LOCALIZATION);
 	// if (_file->checkFileExist())
 	// 	_file->removeFile();
-	_file = new File(UMA0_CONFIG_LOCALIZATION);
+	_file = new File(CONFIG_LOCALIZATION);
 	if (_file->findFileLine("\n" UMA0_LOCALIZATION) > 0)
 		_file->deleteFileLine("\n" UMA0_LOCALIZATION, _file->findFileLine("\n" UMA0_LOCALIZATION));
 
-
+	// //Uninstall old installation
+	// if (this->isOldInstallation()) {
+	// 	_file = new File(OLD_CONFIG_LOCALIZATION);
+	// 	if (_file->findFileLine("\n" UMA0_LOCALIZATION) > 0)
+	// 		_file->deleteFileLine("\n" UMA0_LOCALIZATION, _file->findFileLine("\n" UMA0_LOCALIZATION));
+	// }
 	_setup = NO;
 	return 1;
 }
@@ -142,11 +155,10 @@ const Setup Engine::getSetup() {
 const Setup Engine::calcSetup() {
 	_setup = NO;
 
-	_file = new File(UX0_CONFIG_LOCALIZATION);
+	_file = new File(CONFIG_LOCALIZATION);
 
 	if ( !_file->checkFileExist() )
 		return _setup;
-
 
 	if (_file->findFileLine("\n" UX0_LOCALIZATION) > 0)
 		_setup = UX0;
@@ -155,4 +167,11 @@ const Setup Engine::calcSetup() {
 		_setup = UMA0;
 
 	return _setup;
+}
+
+const bool Engine::isOldInstallation() {
+	_file = new File(OLD_CONFIG_LOCALIZATION);
+	if (_file->findFileLine(UMA0_LOCALIZATION) > 0)
+		return true;
+	return false;
 }
