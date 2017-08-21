@@ -29,6 +29,7 @@ public:
 	int auto_switch();
 	int switch_to_ux0();
 	int switch_to_uma0();
+	void reboot();
 	int uninstall();
 
 	//Setter
@@ -39,6 +40,7 @@ public:
 
 	const Setup calcSetup();
 	const bool isOldInstallation();
+	void installChangelog();
 
 };
 #endif /* !ENGINE_HH_ */

@@ -173,7 +173,6 @@ int File::removeFile() {
 }
 
 int File::findFileLine(const char *line) {
-    //debugNetPrintf(DEBUG, "--findFileLine parameters--\nconst char *line: %s\n", line);
     int pos_search = 0;
     int pos_text = 0;
     int len_search = strlen(line);
@@ -184,7 +183,6 @@ int File::findFileLine(const char *line) {
         if(text[pos_text] == line[pos_search]) {
             pos_search++;
             if(pos_search == len_search) {
-                //debugNetPrintf(DEBUG, "match from %d to %d\n", pos_text - len_search, pos_text);
                 return pos_text;
             }
         }
@@ -193,16 +191,12 @@ int File::findFileLine(const char *line) {
             pos_search = 0;
         }
     }
-    //debugNetPrintf(DEBUG, "no match\n");
-    //debugNetPrintf(DEBUG, "--finished findFileLine--\n", line);
     return -1;
 }
 
 int File::addFileLine(const char* line, int position) {
-    //debugNetPrintf(DEBUG, "--addFileLine parameters--\nconst char *line: %s\nint position: %d\n", line, position);
     int size = this->getFileSize();
     int line_lenght = strlen(line);
-    //debugNetPrintf(DEBUG, "File size: %d\n", size);
     if (size < 0)
         return 0;
     uint8_t* buffer = (uint8_t*)malloc(size);
@@ -210,20 +204,15 @@ int File::addFileLine(const char* line, int position) {
     buffer[len] = 0;
     std::string the_file = (const char*)buffer;
     free(buffer);
-    //debugNetPrintf(DEBUG, "File readed:\n%s\n", the_file.c_str());
     the_file.insert(position + 1, line);
-    //debugNetPrintf(DEBUG, "File changed:\n%s\n", the_file.c_str());
     int written = this->writeFile(the_file.c_str(), the_file.length());
     if (written < 0)
         return 0;
-    //debugNetPrintf(DEBUG, "File was writting Successfully\n--finished addFileLine--\n");
     return 1;
 }
 int File::deleteFileLine(const char *line, int position) {
-    //debugNetPrintf(DEBUG, "--deleteFileLine parameters--\nconst char *line: %s\nint position: %d\n", line, position);
     int size = this->getFileSize();
     int line_lenght = strlen(line);
-    //debugNetPrintf(DEBUG, "File size: %d\n", size);
     if (size < 0)
         return 0;
     uint8_t* buffer = (uint8_t*)malloc(size);
@@ -231,12 +220,10 @@ int File::deleteFileLine(const char *line, int position) {
     buffer[len] = 0;
     std::string the_file = (const char*)buffer;
     free(buffer);
-    //debugNetPrintf(DEBUG, "File readed:\n%s\n", the_file.c_str());
     the_file.erase(position - line_lenght + 1, line_lenght);
     int written = this->writeFile(the_file.c_str(), the_file.length());
     if (written < 0)
          return 0;
 
-    //debugNetPrintf(DEBUG, "File was writting Successfully\n--finished deleteFileLine--\n");
     return 1;
 }

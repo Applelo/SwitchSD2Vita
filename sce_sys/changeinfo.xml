@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<changeinfo>
+   <changes app_ver="01.00">
+     <![CDATA[
+- Initial Release<br>
+     ]]>
+  </changes>
+  <changes app_ver="01.10">
+   <![CDATA[
+- Now using ur0 config exclusively<br>
+- Added auto-switch feature<br>
+- Fixed some stuff<br>
+   ]]>
+ </changes>
+ <changes app_ver="01.20">
+  <![CDATA[
+- Detect old installation (1.0 version with uma0 config)<br>
+- Small change in menu<br>
+- Add this changelog<br>
+- Fix, always fix and optimization<br>
+  ]]>
+</changes>
+</changeinfo>
