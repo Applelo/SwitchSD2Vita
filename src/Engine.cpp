@@ -132,12 +132,12 @@ int Engine::uninstall() {
 	if (_file->findFileLine("\n" UMA0_LOCALIZATION) > 0)
 		_file->deleteFileLine("\n" UMA0_LOCALIZATION, _file->findFileLine("\n" UMA0_LOCALIZATION));
 
-	// //Uninstall old installation
-	// if (this->isOldInstallation()) {
-	// 	_file = new File(OLD_CONFIG_LOCALIZATION);
-	// 	if (_file->findFileLine("\n" UMA0_LOCALIZATION) > 0)
-	// 		_file->deleteFileLine("\n" UMA0_LOCALIZATION, _file->findFileLine("\n" UMA0_LOCALIZATION));
-	// }
+	//Uninstall old installation
+	if (this->isOldInstallation()) {
+		_file = new File(OLD_CONFIG_LOCALIZATION);
+		if (_file->findFileLine("\n" UMA0_LOCALIZATION) > 0)
+			_file->deleteFileLine("\n" UMA0_LOCALIZATION, _file->findFileLine("\n" UMA0_LOCALIZATION));
+	}
 	_setup = NO;
 	return 1;
 }
