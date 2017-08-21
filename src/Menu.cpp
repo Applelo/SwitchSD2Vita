@@ -9,6 +9,7 @@
 Menu::Menu() {
 	_pgf = vita2d_load_default_pgf();
 	_engine = new Engine();
+	_engine->installChangelog();
 	_step = MAIN;
 	_selector = ((_engine->getSetup() == NO) ? 2 : 1);
 	_log = "";
@@ -55,7 +56,7 @@ void Menu::main() {
 	}
 
 	if (_oldInstall)
-		vita2d_pgf_draw_text(_pgf, 50, 500, RED, 1.0, "You have an old installation.\nUse uninstall option to access to other option.");
+		vita2d_pgf_draw_text(_pgf, 50, 500, RED, 1.0, "An old installation detected.\nUse uninstall option to access to new features.");
 
 	vita2d_pgf_draw_text(_pgf, 650, 450, WHITE, 1.3, "Switch SD2Vita");
 	vita2d_pgf_draw_textf(_pgf, 850, 450, WHITE, 0.9,"%0.1f", VERSION_NUMBER);
@@ -95,7 +96,7 @@ void Menu::main() {
 			break;
 
 		  case 5:
-			_step = REBOOT;
+			_engine->reboot();
 			break;
 
 		  case 6:
@@ -163,10 +164,6 @@ void Menu::uninstall() {
 	if (_oldInstall)
 		_oldInstall = _engine->isOldInstallation();
 	_step = MAIN;
-}
-
-void Menu::reboot() {
-	scePowerRequestColdReset();
 }
 
 //Setter

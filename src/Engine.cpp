@@ -6,7 +6,6 @@
 
 # include "../include/Engine.hh"
 
-
 Engine::Engine() {
 	_setup = this->calcSetup();
 }
@@ -171,7 +170,22 @@ const Setup Engine::calcSetup() {
 
 const bool Engine::isOldInstallation() {
 	_file = new File(OLD_CONFIG_LOCALIZATION);
+	if (!_file->checkFileExist())
+		return false;
+
 	if (_file->findFileLine(UMA0_LOCALIZATION) > 0)
 		return true;
 	return false;
+}
+
+void Engine::reboot() {
+	scePowerRequestColdReset();
+}
+
+void Engine::installChangelog() {
+	sceIoMkdir("ux0:patch/SWITCHSDV/", 0777);//Create folders for if it doesn't exist
+	sceIoMkdir("ux0:patch/SWITCHSDV/sce_sys/", 0777);
+	sceIoMkdir("ux0:patch/SWITCHSDV/sce_sys/changeinfo", 0777);
+	_file = new File(CHANGELOG_LOCALIZATION);
+	_file->copyFile(NEW_CHANGELOG_LOCALIZATION, NULL);
 }

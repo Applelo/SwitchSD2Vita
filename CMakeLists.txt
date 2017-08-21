@@ -52,7 +52,6 @@ add_executable(${SHORT_NAME}
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
 target_link_libraries(${SHORT_NAME}
-    #debugnet
     vita2d
     ScePower_stub
     SceDisplay_stub
@@ -65,8 +64,6 @@ target_link_libraries(${SHORT_NAME}
     freetype
     stdc++
     gcc
-    #SceNet_stub
-    #SceNetCtl_stub
 )
 
 
@@ -75,6 +72,7 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
   FILE  sce_sys/icon0.png sce_sys/icon0.png
+        sce_sys/changeinfo.xml sce_sys/changeinfo.xml
         sce_sys/livearea/pic0.png sce_sys/pic0.png
         sce_sys/livearea/contents/bg.png sce_sys/livearea/contents/bg.png
         sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png

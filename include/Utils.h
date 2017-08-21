@@ -7,7 +7,6 @@
 #ifndef UTILS_H_
 # define UTILS_H_
 
-//# include <debugnet.h>
 # include <stdio.h>
 # include <string.h>
 # include <string>
@@ -19,7 +18,6 @@
 # include <psp2/power.h>
 # include <vector>
 # include <string>
-
 # include <vita2d.h>
 
 # define SCREEN_L	960
@@ -41,9 +39,8 @@
 # define OLD_CONFIG_LOCALIZATION "ux0:tai/config.txt"
 # define CONFIG_LOCALIZATION "ur0:tai/config.txt"
 
-//debugnet
-//#define IP_SERVER "192.168.0.26"
-//#define PORT_SERVER 18194
+# define CHANGELOG_LOCALIZATION "ux0:app/SWITCHSDV/sce_sys/changeinfo.xml"
+# define NEW_CHANGELOG_LOCALIZATION "ux0:patch/SWITCHSDV/sce_sys/changeinfo/changeinfo.xml"
 
 typedef struct {
     uint64_t *value;

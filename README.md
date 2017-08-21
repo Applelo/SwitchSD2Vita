@@ -5,10 +5,11 @@ This application simplify the setup to install and manage SD2VITA drivers for bo
 
 ## Changelog
 
-### Version 1.2 - The small Update
+### Version 1.2 - The small Update (Available Soon)
 
 - Detect old installation (1.0 version with uma0 config)
 - Small change in menu
+- Add an official changelog
 - Fix, always fix :)
 
 ### Version 1.1 - Yosh Update

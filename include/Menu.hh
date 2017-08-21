@@ -58,7 +58,6 @@ public:
 	void switch_to_ux0();
 	void switch_to_uma0();
 	void uninstall();
-	void reboot();
 
 };
 
