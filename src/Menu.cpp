@@ -160,8 +160,8 @@ void Menu::uninstall() {
 	}
 	else
 		_log = "Fail to uninstall...";
-	// if (_oldInstall)
-	// 	_oldInstall = _engine->isOldInstallation();
+	if (_oldInstall)
+		_oldInstall = _engine->isOldInstallation();
 	_step = MAIN;
 }
 
