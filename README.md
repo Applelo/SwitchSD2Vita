@@ -5,11 +5,11 @@ This application simplify the setup to install and manage SD2VITA drivers for bo
 
 ## Changelog
 
-### Version 1.2 - The small Update (Available Soon)
+### Version 1.2 - The small Update
 
 - Detect old installation (1.0 version with uma0 config)
 - Small change in menu
-- Rename ux0:/tai folder
+- Rename ux0:tai folder
 - Update PSVita database on switch
 - Add an official changelog
 - Fix, always fix :)
