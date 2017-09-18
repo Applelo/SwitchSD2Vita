@@ -41,6 +41,7 @@ public:
 	const Setup calcSetup();
 	const bool isOldInstallation();
 	void installChangelog();
+	void renameTaiUX0Folder(bool status);
 
 };
 #endif /* !ENGINE_HH_ */

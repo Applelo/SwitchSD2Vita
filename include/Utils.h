@@ -35,6 +35,7 @@
 # define UMA0_APP_LOCALIZATION "app0:plugins/gamesd_uma0.skprx"
 # define UX0_APP_LOCALIZATION "app0:plugins/gamesd_ux0.skprx"
 # define UMA0_LOCALIZATION "ur0:tai/gamesd_uma0.skprx"
+# define OLD_UMA0_LOCALIZATION "ux0:tai/gamesd_uma0.skprx"
 # define UX0_LOCALIZATION "ur0:tai/gamesd_ux0.skprx"
 # define OLD_CONFIG_LOCALIZATION "ux0:tai/config.txt"
 # define CONFIG_LOCALIZATION "ur0:tai/config.txt"

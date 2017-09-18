@@ -16,6 +16,8 @@
   <![CDATA[
 - Detect old installation (1.0 version with uma0 config)<br>
 - Small change in menu<br>
+- Rename ux0:/tai folder<br>
+- Update PSVita database on switch<br>
 - Add this changelog<br>
 - Fix, always fix and optimization<br>
   ]]>
