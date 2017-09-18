@@ -61,7 +61,9 @@ int Engine::switch_to_ux0() {
 	_file->addFileLine("\n" UX0_LOCALIZATION, _file->findFileLine("*KERNEL"));
 	delete _file;
 
-	sceIoRemove("uma0:/id.dat");//update database
+	if (_setup == UMA0)
+		sceIoRemove("uma0:/id.dat");//update database on switch
+
 	_setup = UX0;
 	return 1;
 }
@@ -103,7 +105,9 @@ int Engine::switch_to_uma0() {
 	_file->addFileLine("\n" UMA0_LOCALIZATION, _file->findFileLine("*KERNEL"));
 	delete _file;
 
-	sceIoRemove("ux0:/id.dat");//update database
+	if (_setup == UX0)
+		sceIoRemove("ux0:/id.dat");//update database on switch
+
 	_setup = UMA0;
 	return 1;
 }
