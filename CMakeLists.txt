@@ -16,7 +16,7 @@ endif()
 ## Define project parameters here
 # Name of the project
 set(SHORT_NAME switch_sd2vita)
-set(PSVITAIP  "192.168.0.27")
+set(PSVITAIP  "192.168.2.9")
 project(${SHORT_NAME})
 # This line adds Vita helper macros, must go after project definition in order
 # to build Vita specific artifacts (self/vpk).

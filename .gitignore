@@ -1,14 +1,17 @@
 # Files
 *.o
 *.elf
+*.self
 *.velf
 *.bin
 *.vpk
 *.sfo
-*.self
+*.cbp
+
 
 switch_sd2vita
 .DS_Store
+.idea
 
 # CMake data
 CMakeCache.txt

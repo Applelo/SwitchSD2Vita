@@ -9,6 +9,8 @@ This application simplify the setup to install and manage SD2VITA drivers for bo
 
 - Detect old installation (1.0 version with uma0 config)
 - Small change in menu
+- Rename ux0:/tai folder
+- Update PSVita database on switch
 - Add an official changelog
 - Fix, always fix :)
 
@@ -26,11 +28,7 @@ This application simplify the setup to install and manage SD2VITA drivers for bo
 
 ### I use the version 1.0, Can I update ?
 
-Yes, you can. Since SwitchSD2Vita 1.2, the homebrew detect if you have an old installation (only for uma0 installation). You just need to edit manually the file ux0:/tai/config.txt and remove the line :
-
-```
-ur0:/config/gamesd_uma0.skprx
-```
+Yes, you can. Since SwitchSD2Vita 1.2, the homebrew detect if you have an old installation (only for uma0 installation). You just need to use uninstall option.
 
 ### Where can I download it?
 
@@ -69,12 +67,13 @@ make copy_vpk
 
 ## Credits
 
-* Developped by *Appelo* and by *yosh778*, who added great features and fix :)
+* Developped by *Appelo* and by *yosh778* (who added great features and fix :) )
 * *Tuxbot123* for the idea and the bubble customization
 * *Team Molecule* for HENkaku and taihen
-* [*xyzz* for PS Vita gamecard to microSD adapter](https://github.com/xyzz/gamecard-microsd)
+* [*xyzz* and *The_Flow* for PS Vita gamecard to microSD adapter](https://github.com/xyzz/gamecard-microsd)
 * All people contributed to VitaSDK
 * *xerpi* for the library vita2D
 * *The_FloW* for file function
-* *Rinnegatamente* because I steal a part of your work :p
+* *Rinnegatamente* for some part of file function used in lpp-vita
+* *KanadeEngel* for database trick
 * My master, *MisterAlex*
