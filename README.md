@@ -5,6 +5,11 @@ This application simplify the setup to install and manage SD2VITA drivers for bo
 
 ## Changelog
 
+### Version 1.3 - The very small Update
+
+- Support the 3.65/3.67 PSVita Version (thanks to @TheOfficialFloW & @ArkSource)
+
+
 ### Version 1.2 - The small Update
 
 - Detect old installation (1.0 version with uma0 config)
@@ -28,7 +33,7 @@ This application simplify the setup to install and manage SD2VITA drivers for bo
 
 ### I use the version 1.0, Can I update ?
 
-Yes, you can. Since SwitchSD2Vita 1.2, the homebrew detect if you have an old installation (only for uma0 installation). You just need to use uninstall option.
+Yes, you can. Since SwitchSD2Vita 1.2 version, the homebrew detect if you have an old installation (only for uma0 installation). You just need to use uninstall option.
 
 ### Where can I download it?
 
@@ -63,6 +68,8 @@ make send_vpk
 make copy
 #send vpk with USB
 make copy_vpk
+#emulate in Vita3K but doesn't work :p
+make emulate
 ```
 
 ## Credits
