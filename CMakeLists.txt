@@ -17,6 +17,7 @@ endif()
 # Name of the project
 set(SHORT_NAME switch_sd2vita)
 set(PSVITAIP  "192.168.2.9")
+set(VITA3K_PATH "/Applications/Vita3K.app/Contents/MacOS/Vita3K")
 project(${SHORT_NAME})
 # This line adds Vita helper macros, must go after project definition in order
 # to build Vita specific artifacts (self/vpk).
@@ -30,7 +31,7 @@ set(VITA_APP_NAME "Switch SD2Vita")
 
 set(VITA_TITLEID  "SWITCHSDV")
 # Optional version string to show in LiveArea's more info screen
-set(VITA_VERSION  "01.20")
+set(VITA_VERSION  "01.30")
 
 ## Flags and includes for building
 # Note that we make sure not to overwrite previous flags
@@ -102,3 +103,9 @@ add_custom_target(copy_vpk
   COMMAND cp ${SHORT_NAME}.vpk F:/data/${VITA_TITLEID}/${SHORT_NAME}.vpk
   DEPENDS ${SHORT_NAME}.vpk
 )
+
+add_custom_target(emulator
+        COMMAND ${VITA3K_PATH} ${CMAKE_CURRENT_BINARY_DIR}/${SHORT_NAME}.vpk
+        DEPENDS ${SHORT_NAME}.vpk
+        )
+
