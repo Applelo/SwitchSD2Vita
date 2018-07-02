@@ -126,7 +126,7 @@ void Menu::switch_to_ux0() {
 	if (_oldInstall)
 		_result = 0;
 	else
-		_result = _engine->switch_to_ux0();
+		_result = _engine->switch_to(UX0);
 
 	if (_result) {
 		_log = "Success to switch to ux0.\nYou must reboot your PSVita to apply change.";
@@ -142,7 +142,7 @@ void Menu::switch_to_uma0() {
 	if (_oldInstall)
 		_result = 0;
 	else
-		_result = _engine->switch_to_uma0();
+		_result = _engine->switch_to(UMA0);
 
 	if (_result) {
 		_log = "Success to switch to uma0.\nYou must reboot your PSVita to apply change.";

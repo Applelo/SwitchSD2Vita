@@ -22,4 +22,16 @@
 - Fix, always fix and optimization<br>
   ]]>
 </changes>
+    <changes app_ver="01.30">
+        <![CDATA[
+- Support the 3.65/3.67 PSVita Version (thanks to @TheOfficialFloW & @ArkSource)
+  ]]>
+    </changes>
+    <changes app_ver="02.00">
+        <![CDATA[
+- Use PSVita-StorageMgr instead of gamesdcard-microsd
+- You can choose what mount point you want (for advanced user)
+- Support the 3.68 PSVita Version
+  ]]>
+    </changes>
 </changeinfo>

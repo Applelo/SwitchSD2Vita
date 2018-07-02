@@ -10,7 +10,10 @@
 typedef enum Setup {
 	NO = 0,
 	UX0,
-	UMA0
+	UMA0,
+	XMC0,
+	IMC0,
+	GRW0
 } Setup;
 
 # include "Utils.h"
@@ -27,8 +30,7 @@ public:
 	virtual ~Engine();
 
 	int auto_switch();
-	int switch_to_ux0();
-	int switch_to_uma0();
+	int switch_to(Setup mount_point);
 	void reboot();
 	int uninstall();
 
