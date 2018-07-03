@@ -30,8 +30,9 @@ public:
 	virtual ~Engine();
 
 	int auto_switch();
-	int switch_to(Setup mount_point);
+	int switch_to(Setup setup);
 	void reboot();
+	void updateDb();
 	int uninstall();
 
 	//Setter
@@ -39,6 +40,7 @@ public:
 
 	// Getter
 	const Setup getSetup();
+    std::string getSetupString(Setup setup);
 
 	const Setup calcSetup();
 	const bool isOldInstallation();
