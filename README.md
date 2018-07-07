@@ -1,6 +1,6 @@
 # Switch SD2Vita
 
-### SD2Vita drivers manager and Switch SD memory between ux0: and uma0: memory easily!
+### Switch your mount point between ux0 and uma0 easily for your SD2Vita!
 
 This application simplify the setup to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.
 You can also switch to other mount point if you want (xmc0, imc0, grw0) :)
