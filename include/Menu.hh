@@ -25,12 +25,16 @@ class Menu {
 private:
 	std::vector<std::string> _mainMenu = {
 		"Auto switch",
-		"Switch to ux0",
-		"Switch to uma0",
+		" to ux0",
+		" to uma0",
 		"Uninstall",
 		"Reboot your PSVita",
 		"Exit"
 	};
+    std::vector<std::string> _actionSuffix = {
+          "Switch",
+          "Install"
+    };
 	Step _step;
 	SceCtrlData _ctrl_peek;
 	SceCtrlData _ctrl_press;

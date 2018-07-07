@@ -25,15 +25,18 @@ int Engine::auto_switch() {
 
 int Engine::switch_to(Setup setup) {
 
+    std::string old_config_entry = "";
     std::string new_config_entry = "\n" + this->getSetupString(setup);
-    std::string old_config_entry = "\n" + this->getSetupString(_setup);
+    if (_setup != NO) {
+        std::string old_config_entry = "\n" + this->getSetupString(_setup);
+    }
 
     this->renameTaiUX0Folder(true);
 
 
     //check and copy Storage Mgr plugin
     _file = new File(SMGR_LOCALIZATION);
-    if ( !_file->checkFileExist() ) {
+    if (!_file->checkFileExist()) {
 
         //copy SMGR plugin
         File *smgr_app_localization = new File(SMGR_APP_LOCALIZATION);
@@ -42,8 +45,7 @@ int Engine::switch_to(Setup setup) {
             if (!result) {
                 return 0;
             }
-        }
-        else {
+        } else {
             return 0;
         }
         delete smgr_app_localization;
@@ -64,13 +66,13 @@ int Engine::switch_to(Setup setup) {
 
     //update smgr config file
     _file = new File(SMGR_CONFIG_LOCALIZATION);
-    if (_file->findFileLine("GCD") > -1) {
+    if (!old_config_entry.empty()) {
+        int find_line = _file->findFileLine(old_config_entry.c_str());
+        if (find_line > -1) {
+            _file->deleteFileLine(old_config_entry.c_str(), find_line);
+        }
+    }
 
-    }
-    int find_line = _file->findFileLine(old_config_entry.c_str());
-    if (find_line > -1) {
-        _file->deleteFileLine(old_config_entry.c_str(), find_line);
-    }
     _file->addFileLine(new_config_entry.c_str(), 0);
     delete _file;
 
@@ -175,7 +177,7 @@ const Setup Engine::getSetup() {
 }
 
 std::string Engine::getSetupString(Setup setup) {
-    std::string gcd ("GCD=");
+    std::string gcd = "GCD=";
     std::string mount_point;
     std::string config_entry;
 
@@ -196,7 +198,7 @@ std::string Engine::getSetupString(Setup setup) {
             mount_point = "grw0";
             break;
         default:
-            return 0;
+            return "";
     }
 
     config_entry = gcd + mount_point;
@@ -206,7 +208,7 @@ std::string Engine::getSetupString(Setup setup) {
 const Setup Engine::calcSetup() {
 	Setup setup = NO;
 
-    _file = new File(SMGR_APP_LOCALIZATION);
+    _file = new File(SMGR_CONFIG_LOCALIZATION);
     if (!_file->checkFileExist()) {
         return setup;
     }

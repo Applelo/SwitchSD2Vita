@@ -16,7 +16,7 @@ endif()
 ## Define project parameters here
 # Name of the project
 set(SHORT_NAME switch_sd2vita)
-set(PSVITAIP  "192.168.2.9")
+set(PSVITAIP  "192.168.0.15")
 set(VITA3K_PATH "/Applications/Vita3K.app/Contents/MacOS/Vita3K")
 project(${SHORT_NAME})
 # This line adds Vita helper macros, must go after project definition in order

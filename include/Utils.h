@@ -32,7 +32,7 @@
 
 //File
 # define TRANSFER_SIZE (64 * 1024)
-# define SMGR_APP_LOCALIZATION "app0:plugins/storagemgr.skpr"
+# define SMGR_APP_LOCALIZATION "app0:plugins/storagemgr.skprx"
 # define SMGR_LOCALIZATION "ur0:tai/storagemgr.skprx"
 # define CONFIG_LOCALIZATION "ur0:tai/config.txt"
 # define SMGR_CONFIG_LOCALIZATION "ur0:tai/storage_config.txt"
