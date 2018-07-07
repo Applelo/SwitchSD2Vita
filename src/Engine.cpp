@@ -67,7 +67,7 @@ int Engine::switch_to(Setup setup) {
     //update smgr config file
     _file = new File(SMGR_CONFIG_LOCALIZATION);
     if (!_file->checkFileExist()) {
-        _file->writeFile("", 0);
+        _file->writeFile("", 1);//create file if it doesn't exist
     }
 
 
@@ -78,7 +78,7 @@ int Engine::switch_to(Setup setup) {
         }
     }
 
-    _file->addFileLine(new_config_entry.c_str(), 0);
+    _file->addFileLine(new_config_entry.c_str(), -1);
     delete _file;
 
 
@@ -214,25 +214,27 @@ const Setup Engine::calcSetup() {
 	Setup setup = NO;
 
     _file = new File(SMGR_CONFIG_LOCALIZATION);
-    if (!_file->checkFileExist() || _file->getFileSize() < 7) {
+    if (!_file->checkFileExist()) {
+        delete _file;
         return setup;
     }
 
-    if (_file->findFileLine("GCD=uma0") > -1) {
+    if (_file->findFileLine("\nGCD=uma0") > -1) {
         setup = UMA0;
     }
-    else if (_file->findFileLine("GCD=ux0") > -1) {
+    else if (_file->findFileLine("\nGCD=ux0") > -1) {
         setup = UX0;
     }
-    else if (_file->findFileLine("GCD=xmc0") > -1) {
+    else if (_file->findFileLine("\nGCD=xmc0") > -1) {
         setup = XMC0;
     }
-    else if (_file->findFileLine("GCD=imc0") > -1) {
+    else if (_file->findFileLine("\nGCD=imc0") > -1) {
         setup = IMC0;
     }
-    else if (_file->findFileLine("GCD=grw0") > -1) {
+    else if (_file->findFileLine("\nGCD=grw0") > -1) {
         setup = GRW0;
     }
+    delete _file;
 
 	return setup;
 }
