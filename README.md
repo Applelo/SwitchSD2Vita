@@ -5,6 +5,8 @@
 This application simplify the setup to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.
 You can also switch to other mount point if you want (xmc0, imc0, grw0) :)
 
+This homebrew uses [StorageMgr](https://github.com/CelesteBlue-dev/PSVita-StorageMgr) by *Celestblue-dev* to work.
+
 ## Changelog
 
 ### Version 2.0 - StorageMgr is better, faster, stronger
@@ -86,8 +88,8 @@ make emulate
 * Developped & maintened by *Applelo*
 * *Tuxbot123* for the idea and the bubble customization
 * *wababc* for test and suggestion
-* [*Celestblue-dev* for StorageMgr plugin](https://github.com/CelesteBlue-dev/PSVita-StorageMgr)
-* All people bring pull request to this project
+* *Celestblue-dev* for [StorageMgr plugin](https://github.com/CelesteBlue-dev/PSVita-StorageMgr)
+* All people bring pull requests to this project
 * *Team Molecule* for HENkaku and taihen
 * All people contributed to VitaSDK
 * *xerpi* for the library vita2D
