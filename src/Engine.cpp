@@ -26,9 +26,9 @@ int Engine::auto_switch() {
 int Engine::switch_to(Setup setup) {
 
     std::string old_config_entry = "";
-    std::string new_config_entry = "\n" + this->getSetupString(setup);
+    std::string new_config_entry = this->getSetupString(setup);
     if (_setup != NO) {
-        std::string old_config_entry = "\n" + this->getSetupString(_setup);
+        std::string old_config_entry = this->getSetupString(_setup);
     }
 
     this->renameTaiUX0Folder(true);
@@ -67,11 +67,13 @@ int Engine::switch_to(Setup setup) {
     //update smgr config file
     _file = new File(SMGR_CONFIG_LOCALIZATION);
     if (!_file->checkFileExist()) {
+        new_config_entry = "\n" + new_config_entry;
+        old_config_entry = "\n" + old_config_entry;
         _file->writeFile("", 1);//create file if it doesn't exist
     }
 
 
-    if (!old_config_entry.empty()) {
+    if (_setup != NO) {
         int find_line = _file->findFileLine(old_config_entry.c_str());
         if (find_line > -1) {
             _file->deleteFileLine(old_config_entry.c_str(), find_line);
@@ -219,19 +221,19 @@ const Setup Engine::calcSetup() {
         return setup;
     }
 
-    if (_file->findFileLine("\nGCD=uma0") > -1) {
+    if (_file->findFileLine("GCD=uma0") > -1) {
         setup = UMA0;
     }
-    else if (_file->findFileLine("\nGCD=ux0") > -1) {
+    else if (_file->findFileLine("GCD=ux0") > -1) {
         setup = UX0;
     }
-    else if (_file->findFileLine("\nGCD=xmc0") > -1) {
+    else if (_file->findFileLine("GCD=xmc0") > -1) {
         setup = XMC0;
     }
-    else if (_file->findFileLine("\nGCD=imc0") > -1) {
+    else if (_file->findFileLine("GCD=imc0") > -1) {
         setup = IMC0;
     }
-    else if (_file->findFileLine("\nGCD=grw0") > -1) {
+    else if (_file->findFileLine("GCD=grw0") > -1) {
         setup = GRW0;
     }
     delete _file;
