@@ -38,9 +38,9 @@
 # define SMGR_CONFIG_LOCALIZATION "ur0:tai/storage_config.txt"
 
 //Old config defines
+# define OLD_UX0_LOCALIZATION "ur0:tai/gamesd_ux0.skprx"
 # define OLD_UMA0_LOCALIZATION "ur0:tai/gamesd_uma0.skprx"
 # define OLD_OLD_UMA0_LOCALIZATION "ux0:tai/gamesd_uma0.skprx"
-# define OLD_UX0_LOCALIZATION "ur0:tai/gamesd_ux0.skprx"
 # define OLD_CONFIG_LOCALIZATION "ux0:tai/config.txt"
 
 # define CHANGELOG_LOCALIZATION "ux0:app/SWITCHSDV/sce_sys/changeinfo.xml"

@@ -66,6 +66,11 @@ int Engine::switch_to(Setup setup) {
 
     //update smgr config file
     _file = new File(SMGR_CONFIG_LOCALIZATION);
+    if (!_file->checkFileExist()) {
+        _file->writeFile("", 0);
+    }
+
+
     if (!old_config_entry.empty()) {
         int find_line = _file->findFileLine(old_config_entry.c_str());
         if (find_line > -1) {
@@ -209,23 +214,23 @@ const Setup Engine::calcSetup() {
 	Setup setup = NO;
 
     _file = new File(SMGR_CONFIG_LOCALIZATION);
-    if (!_file->checkFileExist()) {
+    if (!_file->checkFileExist() || _file->getFileSize() < 7) {
         return setup;
     }
 
-    if (_file->findFileLine("GCD=uma0")) {
+    if (_file->findFileLine("GCD=uma0") > -1) {
         setup = UMA0;
     }
-    else if (_file->findFileLine("GCD=ux0")) {
+    else if (_file->findFileLine("GCD=ux0") > -1) {
         setup = UX0;
     }
-    else if (_file->findFileLine("GCD=xmc0")) {
+    else if (_file->findFileLine("GCD=xmc0") > -1) {
         setup = XMC0;
     }
-    else if (_file->findFileLine("GCD=imc0")) {
+    else if (_file->findFileLine("GCD=imc0") > -1) {
         setup = IMC0;
     }
-    else if (_file->findFileLine("GCD=grw0")) {
+    else if (_file->findFileLine("GCD=grw0") > -1) {
         setup = GRW0;
     }
 
