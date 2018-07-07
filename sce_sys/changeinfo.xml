@@ -30,8 +30,9 @@
     <changes app_ver="02.00">
         <![CDATA[
 - Use PSVita-StorageMgr instead of gamesdcard-microsd<br>
-- You can choose what mount point you want (for advanced user)<br>
+- You can choose what mount point you want for your gamesdcard<br>
 - Support the 3.68 PSVita Version<br>
+- A lot of improve inside :)<br>
         ]]>
     </changes>
 </changeinfo>

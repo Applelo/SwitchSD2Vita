@@ -1,16 +1,18 @@
 # Switch SD2Vita
+
 ### SD2Vita drivers manager and Switch SD memory between ux0: and uma0: memory easily!
 
 This application simplify the setup to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.
-Advanced option let you more mount point if you want :)
+You can also switch to other mount point if you want (xmc0, imc0, grw0) :)
 
 ## Changelog
 
 ### Version 2.0 - StorageMgr is better, faster, stronger
 
 - Use PSVita-StorageMgr instead of gamesdcard-microsd (thanks to @CelesteBlue-dev)
-- You can choose what mount point you want (for advanced user)
+- You can choose what mount point you want for your gamesdcard
 - Support the 3.68 PSVita Version
+- A lot of improve inside :)
 
 ### Version 1.3 - The very small Update
 
@@ -44,7 +46,7 @@ Yes, you can. SwitchSD2Vita 2.0 version detect if you have an old installation. 
 
 ### Where can I download it?
 
-You can download [here](https://github.com/Applelo/SwitchSD2Vita/releases) and install like an PSVita homebrew.
+You can download [here](https://github.com/Applelo/SwitchSD2Vita/releases) and install like any like Vita homebrew.
 But the application is also available on [VitaDB](https://vitadb.rinnegatamante.it/#/info/294) and so you can install it thanks to [Vita Homebrew Browser](https://github.com/devnoname120/vhbb).
 
 ### The homebrew includes both plugins (gamesd for ux0 and uma0)?
@@ -81,14 +83,14 @@ make emulate
 
 ## Credits
 
-* Developped by *Appelo* and by *yosh778* (who added great features and fix :) )
+* Developped & maintened by *Applelo*
 * *Tuxbot123* for the idea and the bubble customization
 * *wababc* for test and suggestion
 * [*Celestblue-dev* for StorageMgr plugin](https://github.com/CelesteBlue-dev/PSVita-StorageMgr)
+* All people bring pull request to this project
 * *Team Molecule* for HENkaku and taihen
 * All people contributed to VitaSDK
 * *xerpi* for the library vita2D
-* *The_FloW* for file function
-* *Rinnegatamente* for some part of file function used in lpp-vita
+* *The_FloW* for file functions
 * *KanadeEngel* for database trick
 * My master, *MisterAlex*
