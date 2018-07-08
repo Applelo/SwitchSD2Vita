@@ -12,6 +12,7 @@
 # include <string>
 # include <stdlib.h>
 # include <psp2/io/fcntl.h>
+# include <psp2/io/dirent.h>
 # include <psp2/io/stat.h>
 # include <psp2/ctrl.h>
 # include <psp2/kernel/processmgr.h>
@@ -28,6 +29,7 @@
 # define RED RGBA8(255, 0, 0, 255)
 # define LIGHT_GREY RGBA8(180, 180, 180, 255)
 # define BACKGROUND RGBA8(36, 41, 45, 255)
+# define BACKGROUND2 RGBA8(40, 45, 49, 150)
 # define VERSION_NUMBER 2.0
 
 //File

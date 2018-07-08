@@ -294,21 +294,32 @@ void Engine::installChangelog() {
 }
 
 void Engine::renameTaiUX0Folder(bool status) {
+
+    //prevent h-encore problem with old Switch SDVita version
+    SceUID folder = sceIoDopen("ux0:/taiOld");
+    if (folder > -1) {
+        sceIoRmdir("ux0:/taiOld");
+    }
+    sceIoDclose(folder);
+
+    
     if (status) {
 
-        _file = new File("ux0:/tai");
-        if (_file->checkFileExist()) {
+        folder = sceIoDopen("ux0:/tai");
+        if (folder > -1) {
             sceIoRename("ux0:/tai", "ux0:/taiOld");
         }
+        sceIoDclose(folder);
 
     }
     else {
 
-        _file = new File("ux0:/taiOld");
-        if (_file->checkFileExist()) {
+        folder = sceIoDopen("ux0:/taiOld");
+        if (folder > -1) {
             sceIoRename("ux0:/taiOld", "ux0:/tai");
         }
+        sceIoDclose(folder);
 
     }
-    delete _file;
+
 }

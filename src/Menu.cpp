@@ -70,8 +70,10 @@ void Menu::main() {
     }
 
 	vita2d_pgf_draw_text(_pgf, 722, 40, WHITE, 1.3, "Switch SD2Vita");
-	vita2d_pgf_draw_textf(_pgf, 820, 80, WHITE, 0.9,"Version %0.1f", VERSION_NUMBER);
-	vita2d_pgf_draw_text(_pgf, 720, 420, WHITE, 1.0, "Developed by Applelo");
+	vita2d_pgf_draw_textf(_pgf, 820, 80, WHITE, 0.9, "Version %0.1f", VERSION_NUMBER);
+	vita2d_pgf_draw_text(_pgf, 705, 420, WHITE, 1.0, "Developed by Applelo");
+	vita2d_pgf_draw_text(_pgf, 735, 440, WHITE, 1.0, "A Tuxbot123 idea");
+	vita2d_pgf_draw_text(_pgf, 733, 460, WHITE, 1.0, "Tested by Wababc");
 
 	//Controls
 	_ctrl_press = _ctrl_peek;
