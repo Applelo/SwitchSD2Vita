@@ -26,9 +26,9 @@ int Engine::auto_switch() {
 int Engine::switch_to(Setup setup) {
 
     std::string old_config_entry = "";
-    std::string new_config_entry = this->getSetupString(setup);
+    std::string new_config_entry = this->getSetupString(setup) + "\n";
     if (_setup != NO) {
-        std::string old_config_entry = this->getSetupString(_setup);
+        old_config_entry = this->getSetupString(_setup) + "\n";
     }
 
     this->renameTaiUX0Folder(true);
@@ -67,11 +67,8 @@ int Engine::switch_to(Setup setup) {
     //update smgr config file
     _file = new File(SMGR_CONFIG_LOCALIZATION);
     if (!_file->checkFileExist()) {
-        new_config_entry = "\n" + new_config_entry;
-        old_config_entry = "\n" + old_config_entry;
         _file->writeFile("", 1);//create file if it doesn't exist
     }
-
 
     if (_setup != NO) {
         int find_line = _file->findFileLine(old_config_entry.c_str());
@@ -91,7 +88,6 @@ int Engine::switch_to(Setup setup) {
     _setup = setup;
     return 1;
 }
-
 
 
 int Engine::uninstall() {

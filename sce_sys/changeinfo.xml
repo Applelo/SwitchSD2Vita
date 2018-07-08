@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <changeinfo>
-   <changes app_ver="01.00">
-     <![CDATA[
-- Initial Release<br>
-     ]]>
-  </changes>
-  <changes app_ver="01.10">
-   <![CDATA[
-- Now using ur0 config exclusively<br>
-- Added auto-switch feature<br>
-- Fixed some stuff<br>
-   ]]>
- </changes>
- <changes app_ver="01.20">
-  <![CDATA[
-- Detect old installation (1.0 version with uma0 config)<br>
-- Small change in menu<br>
-- Rename ux0:tai folder<br>
-- Update PSVita database on switch<br>
-- Add this changelog<br>
-- Fix, always fix and optimization<br>
-  ]]>
-</changes>
+    <changes app_ver="01.00">
+        <![CDATA[
+            - Initial Release<br>
+        ]]>
+    </changes>
+    <changes app_ver="01.10">
+        <![CDATA[
+            - Now using ur0 config exclusively<br>
+            - Added auto-switch feature<br>
+            - Fixed some stuff<br>
+        ]]>
+    </changes>
+    <changes app_ver="01.20">
+        <![CDATA[
+            - Detect old installation (1.0 version with uma0 config)<br>
+            - Small change in menu<br>
+            - Rename ux0:tai folder<br>
+            - Update PSVita database on switch<br>
+            - Add this changelog<br>
+            - Fix, always fix and optimization<br>
+        ]]>
+    </changes>
     <changes app_ver="01.30">
         <![CDATA[
-- Support the 3.65/3.67 PSVita Version (thanks to @TheOfficialFloW & @ArkSource)
-  ]]>
+            - Support the 3.65/3.67 PSVita Version (thanks to @TheOfficialFloW & @ArkSource)
+        ]]>
     </changes>
     <changes app_ver="02.00">
         <![CDATA[
-- Use PSVita-StorageMgr instead of gamesdcard-microsd<br>
-- You can choose what mount point you want for your gamesdcard<br>
-- Support the 3.68 PSVita Version<br>
-- A lot of improve inside :)<br>
+            - Use PSVita-StorageMgr instead of gamesdcard-microsd<br>
+            - You can choose what mount point you want for your gamesdcard<br>
+            - Support the 3.68 PSVita Version<br>
+            - A lot of improve inside :)<br>
         ]]>
     </changes>
 </changeinfo>

@@ -56,15 +56,22 @@ void Menu::main() {
 	vita2d_pgf_draw_text(_pgf, 20, (40 * (_selector + option_position_y - 1)), WHITE, 1.2, ">");
 
 
+    if (this->_engine->getSetup() != NO) {
+        vita2d_pgf_draw_text(_pgf, 50, 420, GREEN, 1.0, std::string ("Installed in " + this->getSetupString(this->_engine->getSetup())).c_str());
+    }
+    else {
+        vita2d_pgf_draw_text(_pgf, 50, 420, WHITE, 1.0, "Not installed");
+    }
 
-	vita2d_pgf_draw_text(_pgf, 50, 420, GREEN, 1.0, std::string ("Installed in " + this->getSetupString(this->_engine->getSetup())).c_str());
+
     vita2d_pgf_draw_textf(_pgf, 50, 450, (_result) ? GREEN : RED , 1.0, "%s", _log.c_str());
-	if (_oldInstall)
+	if (_oldInstall) {
 		vita2d_pgf_draw_text(_pgf, 50, 500, RED, 1.0, "An old installation detected.\nUse uninstall option to access to new features.");
+    }
 
-	vita2d_pgf_draw_text(_pgf, 725, 40, WHITE, 1.3, "Switch SD2Vita");
+	vita2d_pgf_draw_text(_pgf, 722, 40, WHITE, 1.3, "Switch SD2Vita");
 	vita2d_pgf_draw_textf(_pgf, 820, 80, WHITE, 0.9,"Version %0.1f", VERSION_NUMBER);
-	//vita2d_pgf_draw_text(_pgf, 650, 500, WHITE, 1.0, "A Tuxbot123 idea\n\nDeveloped by Applelo");
+	vita2d_pgf_draw_text(_pgf, 720, 420, WHITE, 1.0, "Developed by Applelo");
 
 	//Controls
 	_ctrl_press = _ctrl_peek;
