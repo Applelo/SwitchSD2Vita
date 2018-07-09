@@ -16,7 +16,7 @@ endif()
 ## Define project parameters here
 # Name of the project
 set(SHORT_NAME switch_sd2vita)
-set(PSVITAIP  "192.168.2.9")
+set(PSVITAIP  "192.168.0.15")
 set(VITA3K_PATH "/Applications/Vita3K.app/Contents/MacOS/Vita3K")
 project(${SHORT_NAME})
 # This line adds Vita helper macros, must go after project definition in order
@@ -31,7 +31,7 @@ set(VITA_APP_NAME "Switch SD2Vita")
 
 set(VITA_TITLEID  "SWITCHSDV")
 # Optional version string to show in LiveArea's more info screen
-set(VITA_VERSION  "01.30")
+set(VITA_VERSION  "02.00")
 
 ## Flags and includes for building
 # Note that we make sure not to overwrite previous flags
@@ -78,8 +78,7 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
         sce_sys/livearea/contents/bg.png sce_sys/livearea/contents/bg.png
         sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
         sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
-        plugins/gamesd_ux0.skprx plugins/gamesd_ux0.skprx
-        plugins/gamesd_uma0.skprx plugins/gamesd_uma0.skprx
+        plugins/storagemgr.skprx plugins/storagemgr.skprx
 )
 
 

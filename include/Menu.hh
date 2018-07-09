@@ -11,8 +11,11 @@
 
 typedef enum Step {
 	MAIN = 0,
-	SWITCH_TO_UXO,
-	SWITCH_TO_UMAO,
+	SWITCH_TO_UX0,
+	SWITCH_TO_UMA0,
+    SWITCH_TO_XMC0,
+    SWITCH_TO_IMC0,
+    SWITCH_TO_GRW0,
 	UNINSTALL,
 	REBOOT,
 	EXIT,
@@ -25,12 +28,19 @@ class Menu {
 private:
 	std::vector<std::string> _mainMenu = {
 		"Auto switch",
-		"Switch to ux0",
-		"Switch to uma0",
+		" to ux0",
+		" to uma0",
+        " to xmc0",
+        " to imc0",
+        " to grw0",
 		"Uninstall",
-		"Reboot your PSVita",
+		"Reboot your ",
 		"Exit"
 	};
+    std::vector<std::string> _actionSuffix = {
+          "Switch",
+          "Install"
+    };
 	Step _step;
 	SceCtrlData _ctrl_peek;
 	SceCtrlData _ctrl_press;
@@ -38,9 +48,10 @@ private:
 	Engine* _engine;
 	int _selector;
 	int _result;
-	char const *_log;
+	std::string _log;
 	bool _mustReboot;
 	bool _oldInstall;
+	int _psvitaType;
 
 public:
 	Menu();
@@ -48,6 +59,8 @@ public:
 
 	//Getter
 	const Step getMenu() const;
+	std::string getSetupString(Setup setup);
+    std::string getVitaTypeString();
 
 	//Setter
 	void setMenu(const Step step);
@@ -55,8 +68,7 @@ public:
 	//Display Menu
 	void main();
 	void auto_switch();
-	void switch_to_ux0();
-	void switch_to_uma0();
+	void switch_to(Setup setup);
 	void uninstall();
 
 };

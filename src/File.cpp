@@ -179,7 +179,7 @@ int File::findFileLine(const char *line) {
     int len_text = this->getFileSize();
     char text[len_text];
     this->readFile(text, len_text);
-    for (pos_text = 0; pos_text < len_text - len_search;++pos_text) {
+    for (pos_text = 0; pos_text < len_text; ++pos_text) {
         if(text[pos_text] == line[pos_search]) {
             pos_search++;
             if(pos_search == len_search) {
@@ -196,7 +196,6 @@ int File::findFileLine(const char *line) {
 
 int File::addFileLine(const char* line, int position) {
     int size = this->getFileSize();
-    int line_lenght = strlen(line);
     if (size < 0)
         return 0;
     uint8_t* buffer = (uint8_t*)malloc(size);

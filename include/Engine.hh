@@ -10,7 +10,10 @@
 typedef enum Setup {
 	NO = 0,
 	UX0,
-	UMA0
+	UMA0,
+	XMC0,
+	IMC0,
+	GRW0
 } Setup;
 
 # include "Utils.h"
@@ -27,9 +30,9 @@ public:
 	virtual ~Engine();
 
 	int auto_switch();
-	int switch_to_ux0();
-	int switch_to_uma0();
+	int switch_to(Setup setup);
 	void reboot();
+	void updateDb(Setup setup);
 	int uninstall();
 
 	//Setter
@@ -37,6 +40,8 @@ public:
 
 	// Getter
 	const Setup getSetup();
+    std::string getConfigEntryString(Setup setup);
+    std::string getSetupString(Setup setup);
 
 	const Setup calcSetup();
 	const bool isOldInstallation();
