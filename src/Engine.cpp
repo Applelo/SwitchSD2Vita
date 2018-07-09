@@ -294,13 +294,8 @@ void Engine::installChangelog() {
 }
 
 void Engine::renameTaiUX0Folder(bool status) {
-
-    //prevent h-encore problem with old Switch SDVita version
-    SceUID folder = sceIoDopen("ux0:/taiOld");
-    if (folder > -1) {
-        sceIoRmdir("ux0:/taiOld");
-    }
-    sceIoDclose(folder);
+    
+    SceUID folder;
 
     
     if (status) {
