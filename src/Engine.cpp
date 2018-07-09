@@ -26,9 +26,9 @@ int Engine::auto_switch() {
 int Engine::switch_to(Setup setup) {
 
     std::string old_config_entry = "";
-    std::string new_config_entry = this->getSetupString(setup) + "\n";
+    std::string new_config_entry = this->getConfigEntryString(setup) + "\n";
     if (_setup != NO) {
-        old_config_entry = this->getSetupString(_setup) + "\n";
+        old_config_entry = this->getConfigEntryString(_setup) + "\n";
     }
 
     this->renameTaiUX0Folder(true);
@@ -82,7 +82,7 @@ int Engine::switch_to(Setup setup) {
 
 
     //update database on switch
-   this->updateDb();
+   this->updateDb(_setup);
 
 
     _setup = setup;
@@ -179,33 +179,26 @@ const Setup Engine::getSetup() {
 	return _setup;
 }
 
+std::string Engine::getConfigEntryString(Setup setup) {
+    return "GCD=" + this->getSetupString(setup);
+}
+
 std::string Engine::getSetupString(Setup setup) {
-    std::string gcd = "GCD=";
-    std::string mount_point;
-    std::string config_entry;
 
     switch (setup) {
         case UMA0:
-            mount_point = "uma0";
-            break;
+            return "uma0";
         case UX0 :
-            mount_point = "ux0";
-            break;
+            return "ux0";
         case XMC0 :
-            mount_point = "xmc0";
-            break;
+           return "xmc0";
         case IMC0 :
-            mount_point = "imc0";
-            break;
+            return "imc0";
         case GRW0 :
-            mount_point = "grw0";
-            break;
+            return "grw0";
         default:
             return "";
     }
-
-    config_entry = gcd + mount_point;
-    return config_entry;
 }
 
 const Setup Engine::calcSetup() {
@@ -272,15 +265,13 @@ void Engine::reboot() {
 	scePowerRequestColdReset();
 }
 
-void Engine::updateDb() {
-    switch (_setup) {
-        case UX0:
-            sceIoRemove("uma0:/id.dat");
-            break;
-        case UMA0:
-            sceIoRemove("ux0:/id.dat");
-            break;
+void Engine::updateDb(Setup setup) {
+    std::string id_dat_path = this->getSetupString(setup) + ":/id.dat";
+    File *id_dat_file = new File(id_dat_path.c_str());
+    if (id_dat_file->checkFileExist()) {
+        id_dat_file->removeFile();
     }
+    delete id_dat_file;
 }
 
 void Engine::installChangelog() {

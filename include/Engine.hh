@@ -32,7 +32,7 @@ public:
 	int auto_switch();
 	int switch_to(Setup setup);
 	void reboot();
-	void updateDb();
+	void updateDb(Setup setup);
 	int uninstall();
 
 	//Setter
@@ -40,6 +40,7 @@ public:
 
 	// Getter
 	const Setup getSetup();
+    std::string getConfigEntryString(Setup setup);
     std::string getSetupString(Setup setup);
 
 	const Setup calcSetup();
