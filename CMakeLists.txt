@@ -31,7 +31,7 @@ set(VITA_APP_NAME "Switch SD2Vita")
 
 set(VITA_TITLEID  "SWITCHSDV")
 # Optional version string to show in LiveArea's more info screen
-set(VITA_VERSION  "02.00")
+set(VITA_VERSION  "02.10")
 
 ## Flags and includes for building
 # Note that we make sure not to overwrite previous flags
