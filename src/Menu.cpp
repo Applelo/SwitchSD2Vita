@@ -21,14 +21,21 @@ Menu::~Menu() {
 }
 
 void Menu::main() {
-	std::string action = "";
+	std::string action;
 	int option_position_y = (_engine->getSetup() == UMA0 || _engine->getSetup() == UX0) ? 1 : 0;
 	//Display Txt
-	for (int i = ((_engine->getSetup() == UMA0 || _engine->getSetup() == UX0) ? 0 : 1); i < _mainMenu.size(); i++) {
+	for (int i = option_position_y ? 0 : 1; i < _mainMenu.size(); i++) {
 		switch (i) {
+			//autoswitch for ux0 or uma0
 			case 0:
-				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y), (_selector == (i+1)) ? WHITE : LIGHT_GREY, 1.2, "%s (%s)", _mainMenu[i].c_str(), (_engine->getSetup() == UX0) ? "ux0 to uma0" : "uma0 to ux0");
+				vita2d_pgf_draw_textf(
+						_pgf, 50, 40 * (i + option_position_y),
+						(_selector == (i+1)) ? WHITE : LIGHT_GREY,
+						1.2, "%s (%s)", _mainMenu[i].c_str(),
+						(_engine->getSetup() == UX0) ? "ux0 to uma0" : "uma0 to ux0"
+				);
 				break;
+			//individuals switch
 		    case 1:
             case 2:
             case 3:
@@ -39,17 +46,39 @@ void Menu::main() {
 				} else {
 					action = _actionSuffix[0] + _mainMenu[i];
 				}
-				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y), (_selector == (i + 1)) ? WHITE : LIGHT_GREY, 1.2, "%s",
-									  action.c_str());
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y),
+						(_selector == (i + 1)) ? WHITE : LIGHT_GREY,
+						1.2, "%s", action.c_str()
+				);
 				break;
+			//MCD option
 			case 6:
-				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y), (_oldInstall) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY), 1.2, "%s", _mainMenu[i].c_str());
-				break;
+				vita2d_pgf_draw_textf(
+						_pgf, 50, 40 * (i + option_position_y),
+						(_oldInstall) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY),
+						1.2, "%s %s", _engine->getAddMcdOption() ? "Deactivate" : "Activate", _mainMenu[i].c_str()
+				);
+			//uninstall
 			case 7:
-				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y), (_mustReboot) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY) , 1.2, "%s", std::string (_mainMenu[i] + this->getVitaTypeString()).c_str());
+				vita2d_pgf_draw_textf(
+						_pgf, 50, 40 * (i + option_position_y),
+						(_oldInstall) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY),
+						1.2, "%s", _mainMenu[i].c_str()
+				);
 				break;
+			//Reboot
 			case 8:
-				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y), (_selector == (i+1)) ? WHITE : LIGHT_GREY, 1.2, "%s", _mainMenu[i].c_str());
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y),
+						(_mustReboot) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY),
+						1.2, "%s", std::string (_mainMenu[i] + this->getVitaTypeString()).c_str()
+				);
+				break;
+			//Exit
+			case 9:
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y),
+						(_selector == (i+1)) ? WHITE : LIGHT_GREY,
+						1.2, "%s", _mainMenu[i].c_str()
+				);
 				break;
 		}
 	}
@@ -57,7 +86,10 @@ void Menu::main() {
 
 
     if (this->_engine->getSetup() != NO) {
-        vita2d_pgf_draw_text(_pgf, 50, 420, GREEN, 1.0, std::string ("Installed in " + this->getSetupString(this->_engine->getSetup())).c_str());
+        vita2d_pgf_draw_text(
+        		_pgf, 50, 420, GREEN, 1.0,
+        		std::string ("Installed in " + _engine->getSetupString(this->_engine->getSetup())).c_str()
+        );
     }
     else {
         vita2d_pgf_draw_text(_pgf, 50, 420, WHITE, 1.0, "Not installed");
@@ -108,15 +140,18 @@ void Menu::main() {
 				_step = SWITCH_TO_IMC0;
 				break;
 			case 6:
-				_step = SWITCH_TO_GRW0;
-				break;
-		  	case 7:
+                _step = SWITCH_TO_GRW0;
+                break;
+            case 7:
+                _engine->toogleAddMcdOption();
+                break;
+		  	case 8:
 				_step = UNINSTALL;
 				break;
-		  	case 8:
+		  	case 9:
 				_engine->reboot();
 				break;
-		  	case 9:
+		  	case 10:
 				_step = EXIT;
 				break;
 		}
@@ -146,11 +181,11 @@ void Menu::switch_to(Setup setup) {
 		_result = _engine->switch_to(setup);
 
 	if (_result) {
-		_log = "Success to switch to " + this->getSetupString(setup) + ".\nYou must reboot your PSVita to apply change.";
+		_log = "Success to switch to " + _engine->getSetupString(setup) + ".\nYou must reboot your PSVita to apply change.";
 		_mustReboot = true;
 	}
 	else
-		_log = "Fail to switch to " + this->getSetupString(setup) + ".\nUse Uninstall option and retry.";
+		_log = "Fail to switch to " + _engine->getSetupString(setup) + ".\nUse Uninstall option and retry.";
 	_step = MAIN;
 }
 
@@ -177,22 +212,6 @@ const Step Menu::getMenu() const {
 	return _step;
 }
 
-std::string Menu::getSetupString(Setup setup) {
-    switch (setup) {
-        case UX0:
-            return "ux0";
-        case UMA0:
-            return "uma0";
-        case XMC0:
-            return "xmc0";
-        case IMC0:
-            return "imc0";
-        case GRW0:
-            return "grw0";
-        default:
-            return "";
-    }
-}
 
 std::string Menu::getVitaTypeString() {
     switch (_psvitaType) {

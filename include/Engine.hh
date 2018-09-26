@@ -16,14 +16,16 @@ typedef enum Setup {
 	GRW0
 } Setup;
 
+#include <jansson.h>
 # include "Utils.h"
 # include "File.hh"
+#include "Config.hh"
 
 class Engine {
 private:
-	int _result;
 	File* _file;
 	Setup _setup;
+	Config* _config;
 
 public:
 	Engine();
@@ -36,7 +38,7 @@ public:
 	int uninstall();
 
 	//Setter
-	void setSetup(const Setup setup);
+	void setSetup(Setup setup);
 
 	// Getter
 	const Setup getSetup();
@@ -47,6 +49,9 @@ public:
 	const bool isOldInstallation();
 	void installChangelog();
 	void renameTaiUX0Folder(bool status);
+
+    void toogleAddMcdOption();
+    bool getAddMcdOption();
 
 };
 #endif /* !ENGINE_HH_ */

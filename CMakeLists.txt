@@ -49,6 +49,7 @@ add_executable(${SHORT_NAME}
   src/Menu.cpp
   src/Engine.cpp
   src/File.cpp
+  src/Config.cpp
 )
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
@@ -62,6 +63,7 @@ target_link_libraries(${SHORT_NAME}
     ScePgf_stub
     SceCommonDialog_stub
     SceIofilemgr_stub
+    jansson
     freetype
     stdc++
     gcc

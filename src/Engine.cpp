@@ -8,10 +8,10 @@
 
 Engine::Engine() {
 	_setup = this->calcSetup();
+	_config = new Config();
 }
 
-Engine::~Engine() {
-}
+Engine::~Engine() {}
 
 int Engine::auto_switch() {
     if (_setup == UMA0) {
@@ -25,7 +25,7 @@ int Engine::auto_switch() {
 
 int Engine::switch_to(Setup setup) {
 
-    std::string old_config_entry = "";
+    std::string old_config_entry;
     std::string new_config_entry = this->getConfigEntryString(setup) + "\n";
     if (_setup != NO) {
         old_config_entry = this->getConfigEntryString(_setup) + "\n";
@@ -170,7 +170,7 @@ int Engine::uninstall() {
 }
 
 //Setter
-void Engine::setSetup(const Setup setup) {
+void Engine::setSetup(Setup setup) {
 	_setup = setup;
 }
 
@@ -180,7 +180,19 @@ const Setup Engine::getSetup() {
 }
 
 std::string Engine::getConfigEntryString(Setup setup) {
-    return "GCD=" + this->getSetupString(setup);
+    std::string additionalConfig;
+
+    if (json_is_true(_config->getConfig("addMcd"))) {
+        additionalConfig = "\n";
+        if (setup != UX0) {
+            additionalConfig = "MCD=" + this->getSetupString(UX0);
+        }
+        else {
+            additionalConfig = "MCD=" + this->getSetupString(UMA0);
+        }
+    }
+
+    return "GCD=" + this->getSetupString(setup) + additionalConfig;
 }
 
 std::string Engine::getSetupString(Setup setup) {
@@ -308,4 +320,18 @@ void Engine::renameTaiUX0Folder(bool status) {
 
     }
 
+}
+
+void Engine::toogleAddMcdOption() {
+    if (json_is_true(_config->getConfig("addMcd"))) {
+        _config->setConfig("addMcd", json_true());
+    }
+    else {
+        _config->setConfig("addMcd", json_false());
+    }
+    _config->saveConfig();
+}
+
+bool Engine::getAddMcdOption() {
+    return json_is_true(_config->getConfig("addMcd"));
 }

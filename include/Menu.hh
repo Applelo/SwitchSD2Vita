@@ -17,7 +17,6 @@ typedef enum Step {
     SWITCH_TO_IMC0,
     SWITCH_TO_GRW0,
 	UNINSTALL,
-	REBOOT,
 	EXIT,
 	AUTO_SWITCH
 } Step;
@@ -33,6 +32,7 @@ private:
         " to xmc0",
         " to imc0",
         " to grw0",
+        " MCD config compatibility"
 		"Uninstall",
 		"Reboot your ",
 		"Exit"
@@ -59,7 +59,6 @@ public:
 
 	//Getter
 	const Step getMenu() const;
-	std::string getSetupString(Setup setup);
     std::string getVitaTypeString();
 
 	//Setter

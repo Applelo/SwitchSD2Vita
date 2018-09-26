@@ -48,6 +48,8 @@
 # define CHANGELOG_LOCALIZATION "ux0:app/SWITCHSDV/sce_sys/changeinfo.xml"
 # define NEW_CHANGELOG_LOCALIZATION "ux0:patch/SWITCHSDV/sce_sys/changeinfo/changeinfo.xml"
 
+#define APP_CONFIG_LOCALIZATION "ux0:data/SwitchSD2Vita/config.json"
+
 typedef struct {
     uint64_t *value;
     uint64_t max;

@@ -4,10 +4,18 @@
 
 This application simplify the setup to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.
 You can also switch to another mount point if you want (xmc0, imc0, grw0) :)
-
+<!---
+SwitchSD2Vita saves a config file in ``ux0:data/SwitchSD2Vita`` directory.
+-->
 This homebrew uses [StorageMgr](https://github.com/CelesteBlue-dev/PSVita-StorageMgr) by *Celestblue-dev*.
 
 ## Changelog
+
+<!---### Version 2.1 - Update for fix issues
+
+- Update PSVita-StorageMgr to 3.0 #16
+- Add switch option to add MCD to a new config file #14
+- ImgBot reduce image file size by 20% #17-->
 
 ### Version 2.0 - StorageMgr is better, faster, stronger
 
