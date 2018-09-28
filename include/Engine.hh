@@ -50,7 +50,7 @@ public:
 	void installChangelog();
 	void renameTaiUX0Folder(bool status);
 
-    void toogleAddMcdOption();
+    void toggleAddMcdOption();
     bool getAddMcdOption();
 
 };

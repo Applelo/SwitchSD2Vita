@@ -322,7 +322,7 @@ void Engine::renameTaiUX0Folder(bool status) {
 
 }
 
-void Engine::toogleAddMcdOption() {
+void Engine::toggleAddMcdOption() {
     if (json_is_true(_config->getConfig("addMcd"))) {
         _config->setConfig("addMcd", json_true());
     }

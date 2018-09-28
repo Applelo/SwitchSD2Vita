@@ -55,7 +55,7 @@ void Menu::main() {
 			case 6:
 				vita2d_pgf_draw_textf(
 						_pgf, 50, 40 * (i + option_position_y),
-						(_oldInstall) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY),
+						(_engine->getAddMcdOption()) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY),
 						1.2, "%s %s", _engine->getAddMcdOption() ? "Deactivate" : "Activate", _mainMenu[i].c_str()
 				);
 			//uninstall
@@ -143,7 +143,7 @@ void Menu::main() {
                 _step = SWITCH_TO_GRW0;
                 break;
             case 7:
-                _engine->toogleAddMcdOption();
+                _engine->toggleAddMcdOption();
                 break;
 		  	case 8:
 				_step = UNINSTALL;
