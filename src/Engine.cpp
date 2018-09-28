@@ -75,6 +75,15 @@ int Engine::switch_to(Setup setup) {
         if (find_line > -1) {
             _file->deleteFileLine(old_config_entry.c_str(), find_line);
         }
+        else {
+            //delete also mcd old option exist
+            old_config_entry = this->getConfigEntryString(_setup, json_is_true(_config->getConfig("addMcd")) ? 1 : 0) + "\n";
+            find_line = _file->findFileLine(old_config_entry.c_str());
+            if (find_line > -1) {
+                _file->deleteFileLine(old_config_entry.c_str(), find_line);
+            }
+
+        }
     }
 
     _file->addFileLine(new_config_entry.c_str(), -1);
@@ -179,10 +188,14 @@ const Setup Engine::getSetup() {
 	return _setup;
 }
 
-std::string Engine::getConfigEntryString(Setup setup) {
+std::string Engine::getConfigEntryString(Setup setup, int forceMcd) {
     std::string additionalConfig;
 
-    if (json_is_true(_config->getConfig("addMcd"))) {
+    if (forceMcd == -1) {
+        forceMcd = json_is_true(_config->getConfig("addMcd")) ? 1 : 0;
+    }
+
+    if (forceMcd == 1) {
         additionalConfig = "\n";
         if (setup != UX0) {
             additionalConfig = "MCD=" + this->getSetupString(UX0);

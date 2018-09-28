@@ -42,7 +42,7 @@ public:
 
 	// Getter
 	const Setup getSetup();
-    std::string getConfigEntryString(Setup setup);
+    std::string getConfigEntryString(Setup setup, int forceMcd = -1);
     std::string getSetupString(Setup setup);
 
 	const Setup calcSetup();
