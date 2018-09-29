@@ -1,6 +1,6 @@
 /*
  **
- ** Made by Applelo and Yosh (aka wth)
+ ** Made by Applelo
  **
  */
 

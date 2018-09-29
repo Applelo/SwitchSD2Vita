@@ -2,14 +2,14 @@
 <changeinfo>
     <changes app_ver="01.00">
         <![CDATA[
-            - Initial Release<br>
+            - Initial Release
         ]]>
     </changes>
     <changes app_ver="01.10">
         <![CDATA[
             - Now using ur0 config exclusively<br>
             - Added auto-switch feature<br>
-            - Fixed some stuff<br>
+            - Fixed some stuff
         ]]>
     </changes>
     <changes app_ver="01.20">
@@ -19,7 +19,7 @@
             - Rename ux0:tai folder<br>
             - Update PSVita database on switch<br>
             - Add this changelog<br>
-            - Fix, always fix and optimization<br>
+            - Fix, always fix and optimization
         ]]>
     </changes>
     <changes app_ver="01.30">
@@ -32,13 +32,14 @@
             - Use PSVita-StorageMgr instead of gamesdcard-microsd<br>
             - You can choose what mount point you want for your gamesdcard<br>
             - Support the 3.68 PSVita Version<br>
-            - A lot of improvements inside :)<br>
+            - A lot of improvements inside :)
         ]]>
     </changes>
     <changes app_ver="02.10">
         <![CDATA[
-            - Update PSVita-StorageMgr to 3.0
-            - Add switch option to add MCD to a new config file
+            - Update PSVita-StorageMgr to 3.0<br>
+            - Add switch option to add MCD to a new config file<br>
+            - A lot of improvements inside (always :p)<br>
             - ImgBot reduce image file size by 20%
         ]]>
     </changes>
