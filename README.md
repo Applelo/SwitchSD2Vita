@@ -11,7 +11,7 @@ This homebrew uses [StorageMgr](https://github.com/CelesteBlue-dev/PSVita-Storag
 
 ## Changelog
 
-### Version 2.1 - Update for fix issues
+### Version 2.1 - Update to fix issues
 
 - Update PSVita-StorageMgr to 3.0 [#16](https://github.com/Applelo/SwitchSD2Vita/issues/16)
 - Add switch option to add MCD to a new config file [#14](https://github.com/Applelo/SwitchSD2Vita/issues/14)
