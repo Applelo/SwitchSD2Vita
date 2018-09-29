@@ -35,4 +35,11 @@
             - A lot of improvements inside :)<br>
         ]]>
     </changes>
+    <changes app_ver="02.10">
+        <![CDATA[
+            - Update PSVita-StorageMgr to 3.0
+            - Add switch option to add MCD to a new config file
+            - ImgBot reduce image file size by 20%
+        ]]>
+    </changes>
 </changeinfo>

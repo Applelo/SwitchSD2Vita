@@ -15,21 +15,21 @@ Menu::Menu() {
 	_mustReboot = false;
 	_oldInstall = _engine->isOldInstallation();
 	_psvitaType  = sceKernelGetModel();
+	_optionPositionY = (_engine->getSetup() == UMA0 || _engine->getSetup() == UX0) ? 1 : 0;
 }
 
 Menu::~Menu() {
 }
 
 void Menu::main() {
-	std::string action;
-	int option_position_y = (_engine->getSetup() == UMA0 || _engine->getSetup() == UX0) ? 1 : 0;
+	_optionPositionY = (_engine->getSetup() == UMA0 || _engine->getSetup() == UX0) ? 1 : 0;
 	//Display Txt
-	for (int i = option_position_y ? 0 : 1; i < _mainMenu.size(); i++) {
+	for (int i = _optionPositionY ? 0 : 1; i < _mainMenu.size(); i++) {
 		switch (i) {
 			//autoswitch for ux0 or uma0
 			case 0:
 				vita2d_pgf_draw_textf(
-						_pgf, 50, 40 * (i + option_position_y),
+						_pgf, 50, 40 * (i + _optionPositionY),
 						(_selector == (i+1)) ? WHITE : LIGHT_GREY,
 						1.2, "%s (%s)", _mainMenu[i].c_str(),
 						(_engine->getSetup() == UX0) ? "ux0 to uma0" : "uma0 to ux0"
@@ -42,70 +42,74 @@ void Menu::main() {
             case 4:
             case 5:
 				if (_engine->getSetup() == NO) {
-					action = _actionSuffix[1] + _mainMenu[i];
+					_action = _actionSuffix[1] + _mainMenu[i];
 				} else {
-					action = _actionSuffix[0] + _mainMenu[i];
+					_action = _actionSuffix[0] + _mainMenu[i];
 				}
-				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y),
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + _optionPositionY),
 						(_selector == (i + 1)) ? WHITE : LIGHT_GREY,
-						1.2, "%s", action.c_str()
+						1.2, "%s", _action.c_str()
 				);
 				break;
 			//MCD option
 			case 6:
 				vita2d_pgf_draw_textf(
-						_pgf, 50, 40 * (i + option_position_y),
+						_pgf, 50, 40 * (i + _optionPositionY),
 						(_engine->getAddMcdOption()) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY),
 						1.2, "%s %s", _engine->getAddMcdOption() ? "Deactivate" : "Activate", _mainMenu[i].c_str()
 				);
-			//uninstall
+				break;
+			//Uninstall
 			case 7:
 				vita2d_pgf_draw_textf(
-						_pgf, 50, 40 * (i + option_position_y),
+						_pgf, 50, 40 * (i + _optionPositionY),
 						(_oldInstall) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY),
 						1.2, "%s", _mainMenu[i].c_str()
 				);
 				break;
 			//Reboot
 			case 8:
-				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y),
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + _optionPositionY),
 						(_mustReboot) ? ((_selector == (i+1)) ? GREEN : LIGHT_GREEN) : ((_selector == (i+1)) ? WHITE : LIGHT_GREY),
-						1.2, "%s", std::string (_mainMenu[i] + this->getVitaTypeString()).c_str()
+						1.2, "%s %s", _mainMenu[i].c_str(), this->getVitaTypeString().c_str()
 				);
 				break;
 			//Exit
 			case 9:
-				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + option_position_y),
+				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + _optionPositionY),
 						(_selector == (i+1)) ? WHITE : LIGHT_GREY,
 						1.2, "%s", _mainMenu[i].c_str()
 				);
 				break;
-		}
+            default:
+                break;
+        }
+
 	}
-	vita2d_pgf_draw_text(_pgf, 20, (40 * (_selector + option_position_y - 1)), WHITE, 1.2, ">");
+	vita2d_pgf_draw_text(_pgf, 20, (40 * (_selector + _optionPositionY - 1)), WHITE, 1.2, ">");
 
 
     if (this->_engine->getSetup() != NO) {
         vita2d_pgf_draw_text(
-        		_pgf, 50, 420, GREEN, 1.0,
+        		_pgf, 50, 440, GREEN, 1.0,
         		std::string ("Installed in " + _engine->getSetupString(this->_engine->getSetup())).c_str()
         );
     }
     else {
-        vita2d_pgf_draw_text(_pgf, 50, 420, WHITE, 1.0, "Not installed");
+        vita2d_pgf_draw_text(_pgf, 50, 440, WHITE, 1.0, "Not installed");
     }
 
 
-    vita2d_pgf_draw_textf(_pgf, 50, 450, (_result) ? GREEN : RED , 1.0, "%s", _log.c_str());
+    vita2d_pgf_draw_textf(_pgf, 50, 460, (_result) ? GREEN : RED , 1.0, "%s", _log.c_str());
 	if (_oldInstall) {
 		vita2d_pgf_draw_text(_pgf, 50, 500, RED, 1.0, "An old installation detected.\nUse uninstall option to access to new features.");
     }
 
 	vita2d_pgf_draw_text(_pgf, 722, 40, WHITE, 1.3, "Switch SD2Vita");
 	vita2d_pgf_draw_textf(_pgf, 820, 80, WHITE, 0.9, "Version %0.1f", VERSION_NUMBER);
-	vita2d_pgf_draw_text(_pgf, 705, 420, WHITE, 1.0, "Developed by Applelo");
-	vita2d_pgf_draw_text(_pgf, 735, 440, WHITE, 1.0, "A Tuxbot123 idea");
-	vita2d_pgf_draw_text(_pgf, 733, 460, WHITE, 1.0, "Tested by Wababc");
+	vita2d_pgf_draw_text(_pgf, 705, 440, WHITE, 1.0, "Developed by Applelo");
+	vita2d_pgf_draw_text(_pgf, 735, 460, WHITE, 1.0, "A Tuxbot123 idea");
+	vita2d_pgf_draw_text(_pgf, 733, 480, WHITE, 1.0, "Tested by Wababc");
 
 	//Controls
 	_ctrl_press = _ctrl_peek;

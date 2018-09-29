@@ -32,7 +32,7 @@ private:
         " to xmc0",
         " to imc0",
         " to grw0",
-        " MCD config compatibility"
+        " MCD config compatibility",
 		"Uninstall",
 		"Reboot your ",
 		"Exit"
@@ -52,6 +52,8 @@ private:
 	bool _mustReboot;
 	bool _oldInstall;
 	int _psvitaType;
+    int _optionPositionY;
+    std::string _action;
 
 public:
 	Menu();
