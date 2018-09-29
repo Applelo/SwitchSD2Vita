@@ -170,7 +170,7 @@ void Menu::auto_switch() {
 		_result = _engine->auto_switch();
 
 	if (_result == 1) {
-		_log = "Sucess to switch !.\nYou must reboot your PSVita to apply change.";
+		_log = "Success to switch !.\nYou must reboot your PSVita to apply change.";
 	}
 	else
 		_log = "Fail to switch.\nUse uninstall option and retry.";

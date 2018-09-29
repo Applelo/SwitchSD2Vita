@@ -13,14 +13,20 @@ void Config::refreshConfigFile() {
         _config = json;
     }
     else {
-        _config = json_pack("{sb}","addMcd", true);
-        json_dump_file(json, APP_CONFIG_LOCALIZATION, 0);
+        _config = json_pack(
+                "{s:I, s:b}",
+                "version", VERSION_NUMBER,
+                "addMcd", true
+        );
+        saveConfig();
     }
 
 }
 
 void Config::saveConfig() {
-    json_dump_file(_config, APP_CONFIG_LOCALIZATION, 0);
+    //need to add the folder before save the file to the right localization
+    sceIoMkdir("ux0:data/SwitchSD2Vita", 0777);
+    json_dump_file(_config, "ux0:data/SwitchSD2Vita/config.json", 0);
 }
 
 json_t* Config::getConfig(const char *key) {

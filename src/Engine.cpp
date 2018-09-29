@@ -337,10 +337,10 @@ void Engine::renameTaiUX0Folder(bool status) {
 
 void Engine::toggleAddMcdOption() {
     if (json_is_true(_config->getConfig("addMcd"))) {
-        _config->setConfig("addMcd", json_true());
+        _config->setConfig("addMcd", json_false());
     }
     else {
-        _config->setConfig("addMcd", json_false());
+        _config->setConfig("addMcd", json_true());
     }
     _config->saveConfig();
 }
