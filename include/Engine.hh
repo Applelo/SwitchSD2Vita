@@ -7,6 +7,13 @@
 #ifndef ENGINE_HH_
 # define ENGINE_HH_
 
+#include <jansson.h>
+
+#include "map"
+#include "Utils.h"
+#include "File.hh"
+#include "Config.hh"
+
 typedef enum Setup {
 	NO = 0,
 	UX0,
@@ -16,15 +23,15 @@ typedef enum Setup {
 	GRW0
 } Setup;
 
-#include <jansson.h>
-# include "Utils.h"
-# include "File.hh"
-#include "Config.hh"
+typedef enum Target {
+    GCD = 0,
+    MCD
+} Target;
 
 class Engine {
 private:
 	File* _file;
-	Setup _setup;
+    std::map<Target, Setup> _setup;
 	Config* _config;
 
 public:
@@ -37,15 +44,13 @@ public:
 	void updateDb(Setup setup);
 	int uninstall();
 
-	//Setter
-	void setSetup(Setup setup);
 
 	// Getter
-	const Setup getSetup();
-    std::string getConfigEntryString(Setup setup, int forceMcd = -1);
+	const Setup getSetup(Target target);
+    std::string getConfigEntryString(Setup setup, Target target);
     std::string getSetupString(Setup setup);
 
-	const Setup calcSetup();
+	const Setup calcSetup(Target target);
 	const bool isOldInstallation();
 	void installChangelog();
 	void renameTaiUX0Folder(bool status);

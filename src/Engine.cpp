@@ -7,14 +7,15 @@
 # include "../include/Engine.hh"
 
 Engine::Engine() {
-	_setup = this->calcSetup();
+	_setup[GCD] = this->calcSetup(GCD);
+    _setup[MCD] = this->calcSetup(MCD);
 	_config = new Config();
 }
 
 Engine::~Engine() {}
 
 int Engine::auto_switch() {
-    if (_setup == UMA0) {
+    if (_setup[GCD] == UMA0) {
         return this->switch_to(UX0);
     }
     else {
@@ -26,9 +27,14 @@ int Engine::auto_switch() {
 int Engine::switch_to(Setup setup) {
 
     std::string old_config_entry;
-    std::string new_config_entry = this->getConfigEntryString(setup) + "\n";
-    if (_setup != NO) {
-        old_config_entry = this->getConfigEntryString(_setup) + "\n";
+    std::string new_config_entry = this->getConfigEntryString(setup, GCD) + "\n";
+    if (getAddMcdOption()) {
+        new_config_entry +=  this->getConfigEntryString(setup, MCD) + "\n";
+        _setup[MCD] = setup != UX0 ? UX0 : UMA0;
+
+    }
+    else {
+        _setup[MCD] = NO;
     }
 
     this->renameTaiUX0Folder(true);
@@ -70,20 +76,19 @@ int Engine::switch_to(Setup setup) {
         _file->writeFile("", 1);//create file if it doesn't exist
     }
 
-    if (_setup != NO) {
+    if (_setup[GCD] != NO) {
+        old_config_entry = this->getConfigEntryString(_setup[GCD], GCD) + "\n";
         int find_line = _file->findFileLine(old_config_entry.c_str());
         if (find_line > -1) {
             _file->deleteFileLine(old_config_entry.c_str(), find_line);
         }
-        else {
-            //delete also mcd old option exist
-            old_config_entry = this->getConfigEntryString(_setup, json_is_true(_config->getConfig("addMcd")) ? 1 : 0) + "\n";
-            find_line = _file->findFileLine(old_config_entry.c_str());
-            if (find_line > -1) {
-                _file->deleteFileLine(old_config_entry.c_str(), find_line);
-            }
 
+        old_config_entry = this->getConfigEntryString(_setup[GCD], MCD) + "\n";
+        find_line = _file->findFileLine(old_config_entry.c_str());
+        if (find_line > -1) {
+            _file->deleteFileLine(old_config_entry.c_str(), find_line);
         }
+
     }
 
     _file->addFileLine(new_config_entry.c_str(), -1);
@@ -91,10 +96,10 @@ int Engine::switch_to(Setup setup) {
 
 
     //update database on switch
-   this->updateDb(_setup);
+   this->updateDb(_setup[GCD]);
 
 
-    _setup = setup;
+    _setup[GCD] = setup;
     return 1;
 }
 
@@ -174,38 +179,28 @@ int Engine::uninstall() {
 		delete _file;
 	}
 
-	_setup = NO;
+	_setup[GCD] = NO;
+    _setup[MCD] = NO;
 	return 1;
 }
 
-//Setter
-void Engine::setSetup(Setup setup) {
-	_setup = setup;
-}
 
 //Getter
-const Setup Engine::getSetup() {
-	return _setup;
+const Setup Engine::getSetup(Target target) {
+	return _setup[target];
 }
 
-std::string Engine::getConfigEntryString(Setup setup, int forceMcd) {
-    std::string additionalConfig;
-
-    if (forceMcd == -1) {
-        forceMcd = json_is_true(_config->getConfig("addMcd")) ? 1 : 0;
+std::string Engine::getConfigEntryString(Setup setup, Target target) {
+    if (target == GCD) {
+        return "GCD=" + this->getSetupString(setup);
     }
+    else {
+        if (setup  != UX0) {
+            return "MCD=" + this->getSetupString(UX0);
+        }
 
-    if (forceMcd == 1) {
-        additionalConfig = "\n";
-        if (setup != UX0) {
-            additionalConfig = "MCD=" + this->getSetupString(UX0);
-        }
-        else {
-            additionalConfig = "MCD=" + this->getSetupString(UMA0);
-        }
+        return"MCD=" + this->getSetupString(UMA0);
     }
-
-    return "GCD=" + this->getSetupString(setup) + additionalConfig;
 }
 
 std::string Engine::getSetupString(Setup setup) {
@@ -226,28 +221,29 @@ std::string Engine::getSetupString(Setup setup) {
     }
 }
 
-const Setup Engine::calcSetup() {
+const Setup Engine::calcSetup(Target target) {
 	Setup setup = NO;
-
     _file = new File(SMGR_CONFIG_LOCALIZATION);
     if (!_file->checkFileExist()) {
         delete _file;
         return setup;
     }
 
-    if (_file->findFileLine("GCD=uma0") > -1) {
+    std::string target_name = target == GCD ? "GCD" : "MCD";
+
+    if (_file->findFileLine(std::string(target_name + "=uma0").c_str()) > -1) {
         setup = UMA0;
     }
-    else if (_file->findFileLine("GCD=ux0") > -1) {
+    else if (_file->findFileLine(std::string(target_name + "=ux0").c_str()) > -1) {
         setup = UX0;
     }
-    else if (_file->findFileLine("GCD=xmc0") > -1) {
+    else if (_file->findFileLine(std::string(target_name + "=xmc0").c_str()) > -1) {
         setup = XMC0;
     }
-    else if (_file->findFileLine("GCD=imc0") > -1) {
+    else if (_file->findFileLine(std::string(target_name + "=imc0").c_str()) > -1) {
         setup = IMC0;
     }
-    else if (_file->findFileLine("GCD=grw0") > -1) {
+    else if (_file->findFileLine(std::string(target_name + "=grw0").c_str()) > -1) {
         setup = GRW0;
     }
     delete _file;

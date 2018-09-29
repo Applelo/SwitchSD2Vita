@@ -11,18 +11,18 @@ Menu::Menu() {
 	_engine = new Engine();
 	_engine->installChangelog();
 	_step = MAIN;
-	_selector = ((_engine->getSetup() == NO) ? 2 : 1);
+	_selector = ((_engine->getSetup(GCD) == NO) ? 2 : 1);
 	_mustReboot = false;
 	_oldInstall = _engine->isOldInstallation();
 	_psvitaType  = sceKernelGetModel();
-	_optionPositionY = (_engine->getSetup() == UMA0 || _engine->getSetup() == UX0) ? 1 : 0;
+	_optionPositionY = (_engine->getSetup(GCD) == UMA0 || _engine->getSetup(GCD) == UX0) ? 1 : 0;
 }
 
 Menu::~Menu() {
 }
 
 void Menu::main() {
-	_optionPositionY = (_engine->getSetup() == UMA0 || _engine->getSetup() == UX0) ? 1 : 0;
+	_optionPositionY = (_engine->getSetup(GCD) == UMA0 || _engine->getSetup(GCD) == UX0) ? 1 : 0;
 	//Display Txt
 	for (int i = _optionPositionY ? 0 : 1; i < _mainMenu.size(); i++) {
 		switch (i) {
@@ -32,7 +32,7 @@ void Menu::main() {
 						_pgf, 50, 40 * (i + _optionPositionY),
 						(_selector == (i+1)) ? WHITE : LIGHT_GREY,
 						1.2, "%s (%s)", _mainMenu[i].c_str(),
-						(_engine->getSetup() == UX0) ? "ux0 to uma0" : "uma0 to ux0"
+						(_engine->getSetup(GCD) == UX0) ? "ux0 to uma0" : "uma0 to ux0"
 				);
 				break;
 			//individuals switch
@@ -41,14 +41,9 @@ void Menu::main() {
             case 3:
             case 4:
             case 5:
-				if (_engine->getSetup() == NO) {
-					_action = _actionSuffix[1] + _mainMenu[i];
-				} else {
-					_action = _actionSuffix[0] + _mainMenu[i];
-				}
 				vita2d_pgf_draw_textf(_pgf, 50, 40 * (i + _optionPositionY),
 						(_selector == (i + 1)) ? WHITE : LIGHT_GREY,
-						1.2, "%s", _action.c_str()
+						1.2, "%s %s", _actionSuffix[_engine->getSetup(GCD) == NO ? 1 : 0].c_str(), _mainMenu[i].c_str()
 				);
 				break;
 			//MCD option
@@ -89,10 +84,13 @@ void Menu::main() {
 	vita2d_pgf_draw_text(_pgf, 20, (40 * (_selector + _optionPositionY - 1)), WHITE, 1.2, ">");
 
 
-    if (this->_engine->getSetup() != NO) {
-        vita2d_pgf_draw_text(
+    if (this->_engine->getSetup(GCD) != NO) {
+
+        vita2d_pgf_draw_textf(
         		_pgf, 50, 440, GREEN, 1.0,
-        		std::string ("Installed in " + _engine->getSetupString(this->_engine->getSetup())).c_str()
+        		"Installed in %s%s",
+        		_engine->getSetupString(this->_engine->getSetup(GCD)).c_str(),
+        		_engine->getSetup(MCD) == NO ? "" : std::string ("\nMCD activated for " + _engine->getSetupString(this->_engine->getSetup(MCD))).c_str()
         );
     }
     else {
@@ -100,9 +98,9 @@ void Menu::main() {
     }
 
 
-    vita2d_pgf_draw_textf(_pgf, 50, 460, (_result) ? GREEN : RED , 1.0, "%s", _log.c_str());
+    vita2d_pgf_draw_textf(_pgf, 50, 500, (_result) ? GREEN : RED , 1.0, "%s", _log.c_str());
 	if (_oldInstall) {
-		vita2d_pgf_draw_text(_pgf, 50, 500, RED, 1.0, "An old installation detected.\nUse uninstall option to access to new features.");
+		vita2d_pgf_draw_text(_pgf, 50, 520, RED, 1.0, "An old installation detected.\nUse uninstall option to access to new features.");
     }
 
 	vita2d_pgf_draw_text(_pgf, 722, 40, WHITE, 1.3, "Switch SD2Vita");
@@ -122,8 +120,8 @@ void Menu::main() {
 		_selector++;
 
 	if (_selector > _mainMenu.size())
-		_selector = ((_engine->getSetup() == UMA0 || _engine->getSetup() == UX0) ? 1 : 2);
-	if (_selector < ((_engine->getSetup() == UMA0 || _engine->getSetup() == UX0) ? 1 : 2))
+		_selector = ((_engine->getSetup(GCD) == UMA0 || _engine->getSetup(GCD) == UX0) ? 1 : 2);
+	if (_selector < ((_engine->getSetup(GCD) == UMA0 || _engine->getSetup(GCD) == UX0) ? 1 : 2))
 		_selector = _mainMenu.size();
 
 	if (_ctrl_press.buttons & SCE_CTRL_CROSS) {
@@ -158,7 +156,9 @@ void Menu::main() {
 		  	case 10:
 				_step = EXIT;
 				break;
-		}
+            default:
+                break;
+        }
 	}
 
 }
@@ -204,11 +204,6 @@ void Menu::uninstall() {
 	if (_oldInstall)
 		_oldInstall = _engine->isOldInstallation();
 	_step = MAIN;
-}
-
-//Setter
-void Menu::setMenu(const Step step) {
-	_step = step;
 }
 
 // Getter

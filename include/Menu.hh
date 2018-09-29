@@ -5,6 +5,7 @@
 */
 
 #include "Engine.hh"
+#include <stdio.h>
 
 #ifndef MENU_HH_
 # define MENU_HH_
@@ -27,14 +28,14 @@ class Menu {
 private:
 	std::vector<std::string> _mainMenu = {
 		"Auto switch",
-		" to ux0",
-		" to uma0",
-        " to xmc0",
-        " to imc0",
-        " to grw0",
-        " MCD config compatibility",
+		"to ux0",
+		"to uma0",
+        "to xmc0",
+        "to imc0",
+        "to grw0",
+        "MCD config compatibility",
 		"Uninstall",
-		"Reboot your ",
+		"Reboot your",
 		"Exit"
 	};
     std::vector<std::string> _actionSuffix = {
@@ -53,7 +54,6 @@ private:
 	bool _oldInstall;
 	int _psvitaType;
     int _optionPositionY;
-    std::string _action;
 
 public:
 	Menu();
@@ -63,8 +63,6 @@ public:
 	const Step getMenu() const;
     std::string getVitaTypeString();
 
-	//Setter
-	void setMenu(const Step step);
 
 	//Display Menu
 	void main();
