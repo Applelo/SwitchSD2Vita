@@ -13,10 +13,10 @@ This homebrew uses [StorageMgr](https://github.com/CelesteBlue-dev/PSVita-Storag
 
 ### Version 2.1 - Update for fix issues
 
-- Update PSVita-StorageMgr to 3.0 [#16](#16)
-- Add switch option to add MCD to a new config file [#14](#14)
+- Update PSVita-StorageMgr to 3.0 [#16](https://github.com/Applelo/SwitchSD2Vita/issues/16)
+- Add switch option to add MCD to a new config file [#14](https://github.com/Applelo/SwitchSD2Vita/issues/14)
 - A lot of improvements inside (always :p)
-- ImgBot reduce image file size by 20% [#17](#17)
+- ImgBot reduce image file size by 20% [#17](https://github.com/Applelo/SwitchSD2Vita/pull/17)
 
 ### Version 2.0 - StorageMgr is better, faster, stronger
 
@@ -70,7 +70,7 @@ Just use uninstall option and reboot your vita to disable the plugin.
 
 ### What is the MCD option added in 2.1 version?
 
-The MCD option was added to answer to the issue [#14](#14). 
+The MCD option was added to answer to the issue [#14](https://github.com/Applelo/SwitchSD2Vita/issues/14). 
 
 The official vita memory is not applied as uma0 if you choose the ux0 by default. This option correct this problem with a MCD option which is added in StorageMgr config file (uma0 for ux0 installation or else ux0). 
 
@@ -111,7 +111,7 @@ make emulate
 ## Credits
 
 * Developed & maintained by *Applelo*
-* *yosh* for the pull request [#5](#5) with fixes
+* *yosh* for the pull request [#5](https://github.com/Applelo/SwitchSD2Vita/pull/5) with fixes
 * *Tuxbot123* for the idea and the bubble customization
 * *wababc* for test and suggestion
 * *Celestblue-dev* for [StorageMgr plugin](https://github.com/CelesteBlue-dev/PSVita-StorageMgr)
