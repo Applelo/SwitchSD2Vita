@@ -43,7 +43,6 @@
             - ImgBot reduce image file size by 20%
         ]]>
     </changes>
-    </changes>
     <changes app_ver="02.11">
         <![CDATA[
             - Update PSVita-StorageMgr to 3.1 now work on 3.69 and 3.70<br>
