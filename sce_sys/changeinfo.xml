@@ -48,4 +48,9 @@
             - Update PSVita-StorageMgr to 3.1 now work on 3.69 and 3.70<br>
         ]]>
     </changes>
+	<changes app_ver="02.12">
+        <![CDATA[
+            - Update PSVita-StorageMgr to 3.2 now work on 3.69,3.70,3.71,3.72,3.73<br>
+        ]]>
+    </changes>
 </changeinfo>
