@@ -13,6 +13,10 @@ This homebrew uses [StorageMgr](https://github.com/CelesteBlue-dev/PSVita-Storag
 
 ## Changelog
 
+### Version 2.2 - StorageMgr update
+
+- Update PSVita-StorageMgr to 3.2 [#20](https://github.com/Applelo/SwitchSD2Vita/issues/20) (thanks to @CelesteBlue-dev and @theheroGAC)
+
 ### Version 2.1 - Update to fix issues
 
 - Update PSVita-StorageMgr to 3.0 [#16](https://github.com/Applelo/SwitchSD2Vita/issues/16)
@@ -72,11 +76,11 @@ Just use uninstall option and reboot your vita to disable the plugin.
 
 ### What is the MCD option added in 2.1 version?
 
-The MCD option was added to answer to the issue [#14](https://github.com/Applelo/SwitchSD2Vita/issues/14). 
+The MCD option was added to answer to the issue [#14](https://github.com/Applelo/SwitchSD2Vita/issues/14).
 
-The official vita memory is not applied as uma0 if you choose the ux0 by default. This option correct this problem with a MCD option which is added in StorageMgr config file (uma0 for ux0 installation or else ux0). 
+The official vita memory is not applied as uma0 if you choose the ux0 by default. This option correct this problem with a MCD option which is added in StorageMgr config file (uma0 for ux0 installation or else ux0).
 
-By default, the option is activated but you can easily deactivated this one in the main menu if you want to continue to use it like before this update. 
+By default, the option is activated but you can easily deactivated this one in the main menu if you want to continue to use it like before this update.
 
 ### What data are stored by SwitchSD2Vita on my device?
 
