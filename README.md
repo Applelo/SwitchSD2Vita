@@ -57,14 +57,14 @@ This homebrew uses [StorageMgr](https://github.com/CelesteBlue-dev/PSVita-Storag
 
 ## F.A.Q
 
-### I use an older version of the homebrew (lower than 2.0), Can I update safely ?
+### I use an older version of the homebrew, can I update safely ?
 
-Yes, you can. SwitchSD2Vita 2.0 and above detect if you have an old installation. You just need to use the uninstall option.
+Yes, you can. SwitchSD2Vita detect if you have an older installation. You just need to use the uninstall option.
 
 ### Where can I download it?
 
-You can download [here](https://github.com/Applelo/SwitchSD2Vita/releases) and install like any like Vita homebrew.
-But the application is also available on [VitaDB](https://vitadb.rinnegatamante.it/#/info/294) and so you can install it thanks to [Vita Homebrew Browser](https://github.com/devnoname120/vhbb).
+You can download this homebrew [here](https://github.com/Applelo/SwitchSD2Vita/releases) and install like any like Vita homebrew.
+But the application is also available on [VitaDB](https://vitadb.rinnegatamante.it/#/info/294) and so, you can install it thanks to the [Vita Homebrew Browser](https://github.com/devnoname120/vhbb).
 
 ### The homebrew includes StorageMgr plugin?
 
@@ -80,7 +80,7 @@ The MCD option was added to answer to the issue [#14](https://github.com/Applelo
 
 The official vita memory is not applied as uma0 if you choose the ux0 by default. This option correct this problem with a MCD option which is added in StorageMgr config file (uma0 for ux0 installation or else ux0).
 
-By default, the option is activated but you can easily deactivated this one in the main menu if you want to continue to use it like before this update.
+By default, the option is activated but you can easily deactivated this one in the main menu if you want to continue to use it like before the 2.1 update.
 
 ### What data are stored by SwitchSD2Vita on my device?
 
