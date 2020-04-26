@@ -1,4 +1,5 @@
 {
+  "editor.formatOnSave": true,
   "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
   "files.exclude": {
     "**/*.o": true,
