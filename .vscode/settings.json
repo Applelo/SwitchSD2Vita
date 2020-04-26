@@ -33,4 +33,6 @@
     "type_traits": "cpp",
     "typeinfo": "cpp"
   },
+  "vita.app_id": "SWITCHSDV",
+  "vita.build_folder": "build"
 }
