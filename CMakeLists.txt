@@ -106,7 +106,7 @@ add_custom_target(copy_vpk
 )
 
 add_custom_target(emulator
-        COMMAND ${VITA3K_PATH} ${CMAKE_CURRENT_BINARY_DIR}/${SHORT_NAME}.vpk
-        DEPENDS ${SHORT_NAME}.vpk
-        )
+  COMMAND ${VITA3K_PATH} ${CMAKE_CURRENT_BINARY_DIR}/${SHORT_NAME}.vpk
+  DEPENDS ${SHORT_NAME}.vpk
+)
 
