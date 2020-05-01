@@ -1,0 +1,16 @@
+name: "CHANGELOG.md to changeinfo.xml"
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - master
+      - dev
+
+jobs:
+  changeinfo: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Applelo/actions-ps-changeinfo@1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
