@@ -1,0 +1,11 @@
+name: Build
+
+on: [push]
+
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://gnuton/vitasdk-docker:latest
+        run: "ls"
