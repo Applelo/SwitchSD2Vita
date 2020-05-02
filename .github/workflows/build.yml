@@ -8,4 +8,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: docker://gnuton/vitasdk-docker:latest
-      - run: "ls"
+      - run: "export DOCKER_NAME=$(docker ps -l --format {{.Names}})"
+      - run: "echo '$DOCKER_NAME'"
