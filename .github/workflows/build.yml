@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: docker://gnuton/vitasdk-docker:latest
-        run: "ls"
+      - run: "ls"
