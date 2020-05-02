@@ -1,51 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <changeinfo>
-    <changes app_ver="01.00">
-        <![CDATA[
-            - Initial Release
-        ]]>
-    </changes>
-    <changes app_ver="01.10">
-        <![CDATA[
-            - Now using ur0 config exclusively<br>
-            - Added auto-switch feature<br>
-            - Fixed some stuff
-        ]]>
-    </changes>
-    <changes app_ver="01.20">
-        <![CDATA[
-            - Detect old installation (1.0 version with uma0 config)<br>
-            - Small change in menu<br>
-            - Rename ux0:tai folder<br>
-            - Update PSVita database on switch<br>
-            - Add this changelog<br>
-            - Fix, always fix and optimization
-        ]]>
-    </changes>
-    <changes app_ver="01.30">
-        <![CDATA[
-            - Support the 3.65/3.67 PSVita Version (thanks to @TheOfficialFloW & @ArkSource)
-        ]]>
-    </changes>
-    <changes app_ver="02.00">
-        <![CDATA[
-            - Use PSVita-StorageMgr instead of gamesdcard-microsd<br>
-            - You can choose what mount point you want for your gamesdcard<br>
-            - Support the 3.68 PSVita Version<br>
-            - A lot of improvements inside :)
-        ]]>
-    </changes>
-    <changes app_ver="02.10">
-        <![CDATA[
-            - Update PSVita-StorageMgr to 3.0<br>
-            - Add switch option to add MCD to a new config file<br>
-            - A lot of improvements inside (always :p)<br>
-            - ImgBot reduce image file size by 20%
-        ]]>
-    </changes>
-	<changes app_ver="02.20">
-        <![CDATA[
-            - Update PSVita-StorageMgr to 3.2 (thanks to @CelesteBlue-dev and @theheroGAC)
-        ]]>
-    </changes>
+  <changes app_ver="01.00"><![CDATA[
+- Initial Release
+]]></changes>
+  <changes app_ver="01.10"><![CDATA[
+- Now using ur0 config exclusively
+- Added auto-switch feature
+- Fixed some stuff
+]]></changes>
+  <changes app_ver="01.20"><![CDATA[
+- Detect old installation (1.0 version with uma0 config)
+- Small change in menu
+- Rename ux0:tai folder
+- Update PSVita database on switch
+- Add an official changelog
+- Fix, always fix :)
+]]></changes>
+  <changes app_ver="01.30"><![CDATA[
+- Support the 3.65/3.67 PSVita Version (thanks to @TheOfficialFloW & @ArkSource)
+]]></changes>
+  <changes app_ver="02.00"><![CDATA[
+- Use PSVita-StorageMgr instead of gamesdcard-microsd (thanks to @CelesteBlue-dev)
+- You can choose what mount point you want for your gamesdcard
+- Support the 3.68 PSVita Version
+- A lot of improvements inside :)
+]]></changes>
+  <changes app_ver="02.10"><![CDATA[
+- Update PSVita-StorageMgr to 3.0
+- Add switch option to add MCD to a new config file
+- A lot of improvements inside (always :p)
+- ImgBot reduce image file size by 20%
+]]></changes>
+  <changes app_ver="02.20"><![CDATA[
+- Update PSVita-StorageMgr to 3.2
+]]></changes>
 </changeinfo>
