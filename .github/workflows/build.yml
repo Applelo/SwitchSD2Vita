@@ -5,7 +5,9 @@ on: [push]
 jobs:
   myjob:
     runs-on: ubuntu-latest
+    services:
+      vitasdk:
+        image: gnuton/vitasdk-docker
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://gnuton/vitasdk-docker:latest
-      - run: echo $(docker ps -l --format {{.Names}})
+      - run: ls
