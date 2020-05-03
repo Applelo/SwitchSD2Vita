@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "env": {
+      "APPID": "SWITCHSDV"
+    }
+  },
+  "tasks": [{
+      "label": "VitaCompanion: Screen",
+      "type": "shell",
+      "command": "echo screen ${input:screenStatus} | nc ${env:VITAIP} 1338"
+    },
+    {
+      "label": "VitaCompanion: Launch",
+      "type": "shell",
+      "command": "echo launch ${config:vita.app_id} | nc ${env:VITAIP} 1338",
+    },
+    {
+      "label": "VitaCompanion: Destroy",
+      "type": "shell",
+      "command": "echo destroy | nc ${env:VITAIP} 1338",
+    },
+    {
+      "label": "VitaCompanion: Update eboot.bin",
+      "type": "shell",
+      "command": "curl --ftp-method nocwd -T ${workspaceFolder}/${config:vita.build_folder}/eboot.bin ftp://${env:VITAIP}:1337/ux0:/app/${config:vita.app_id}/"
+    }
+  ],
+  "inputs": [{
+    "type": "pickString",
+    "id": "screenStatus",
+    "description": "Screen status",
+    "options": [
+      "on",
+      "off",
+    ],
+    "default": "off"
+  }]
+}
