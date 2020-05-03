@@ -5,6 +5,10 @@ on: [push]
 jobs:
   myjob:
     runs-on: ubuntu-latest
+    env:
+      VITASDK: /usr/local/vitasdk
+      WORKSPACE_MAIN: ${{ github.workspace }}/main
+      WORKSPACE_VDPM: ${{ github.workspace }}/vdpm
     steps:
       - uses: actions/checkout@v2
         with:
@@ -17,17 +21,13 @@ jobs:
         run: |
           cd $WORKSPACE_VDPM
           ./bootstrap-vitasdk.sh
-          export VITASDK=/usr/local/vitasdk
           export PATH=$VITASDK/bin:$PATH
           ./install-all.sh
-        env:
-          WORKSPACE_VDPM: ${{ github.workspace }}/vdpm
       - name: Make project
         run: |
+          export PATH=$VITASDK/bin:$PATH
           cd $WORKSPACE_MAIN
           mkdir build
           cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..;
           make
-        env:
-          WORKSPACE_MAIN: ${{ github.workspace }}/main
