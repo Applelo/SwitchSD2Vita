@@ -11,6 +11,7 @@ jobs:
           path: main
       - uses: actions/checkout@v2
         with:
+          repository: vitasdk/vdpm
           path: vdpm
       - run: |
           cd $WORKSPACE/vdpm
