@@ -10,9 +10,13 @@ jobs:
         image: gnuton/vitasdk-docker
     steps:
       - uses: actions/checkout@v2
+        with:
+          path: main
+      - uses: actions/checkout@v2
+        with:
+          path: vdpm
       - run: |
-          ls
-          mkdir build
-          cd build
-          cmake -DCMAKE_BUILD_TYPE=Release ..;
-          make
+          ls $workspace/main
+          ls $workspace/vdpm
+        env:
+          workspace: ${{ github.workspace }}
