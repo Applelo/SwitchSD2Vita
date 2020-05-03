@@ -10,4 +10,9 @@ jobs:
         image: gnuton/vitasdk-docker
     steps:
       - uses: actions/checkout@v2
-      - run: ls
+      - run: |
+          ls
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..;
+          make
