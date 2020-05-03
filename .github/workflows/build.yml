@@ -13,16 +13,21 @@ jobs:
         with:
           repository: vitasdk/vdpm
           path: vdpm
-      - run: |
-          cd $WORKSPACE/vdpm
+      - name: Install VitaSDK
+        run: |
+          cd $WORKSPACE_VDPM
           ./bootstrap-vitasdk.sh
           export VITASDK=/usr/local/vitasdk
           export PATH=$VITASDK/bin:$PATH
           ./install-all.sh
-          cd $WORKSPACE/main
+        env:
+          WORKSPACE_VDPM: ${{ github.workspace }}/vdpm
+      - name: Make project
+        run: |
+          cd $WORKSPACE_MAIN
           mkdir build
           cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..;
           make
         env:
-          WORKSPACE: ${{ github.workspace }}
+          WORKSPACE_MAIN: ${{ github.workspace }}/main
