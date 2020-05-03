@@ -12,6 +12,16 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: vdpm
-      - run: ls $workspace
+      - run: |
+          cd $WORKSPACE/vdpm
+          ./bootstrap-vitasdk.sh
+          export VITASDK=/usr/local/vitasdk
+          export PATH=$VITASDK/bin:$PATH
+          ./install-all.sh
+          cd $WORKSPACE/main
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..;
+          make
         env:
-          workspace: ${{ github.workspace }}
+          WORKSPACE: ${{ github.workspace }}
