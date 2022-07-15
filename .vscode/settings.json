@@ -1,0 +1,38 @@
+{
+  "editor.formatOnSave": true,
+  "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+  "files.exclude": {
+    "**/*.o": true,
+    "bin/": true,
+    "build/": true
+  },
+  "search.exclude": {
+    "plugins": true,
+    "sce_sys": true,
+    "CMakeLists.txt": true,
+  },
+  "files.associations": {
+    "array": "cpp",
+    "xutility": "cpp",
+    "system_error": "cpp",
+    "functional": "cpp",
+    "tuple": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "cstdarg": "cpp",
+    "cstddef": "cpp",
+    "cstdint": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "ctime": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "exception": "cpp",
+    "initializer_list": "cpp",
+    "new": "cpp",
+    "type_traits": "cpp",
+    "typeinfo": "cpp"
+  },
+  "vita.app_id": "SWITCHSDV",
+  "vita.build_folder": "build"
+}

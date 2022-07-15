@@ -1,0 +1,33 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      VITASDK: /usr/local/vitasdk
+      WORKSPACE_MAIN: ${{ github.workspace }}/main
+      WORKSPACE_VDPM: ${{ github.workspace }}/vdpm
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: main
+      - uses: actions/checkout@v2
+        with:
+          repository: vitasdk/vdpm
+          path: vdpm
+      - name: Install VitaSDK
+        run: |
+          cd $WORKSPACE_VDPM
+          ./bootstrap-vitasdk.sh
+          export PATH=$VITASDK/bin:$PATH
+          ./install-all.sh
+      - name: Make project
+        run: |
+          export PATH=$VITASDK/bin:$PATH
+          cd $WORKSPACE_MAIN
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..;
+          make

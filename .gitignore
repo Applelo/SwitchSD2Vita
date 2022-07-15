@@ -25,3 +25,6 @@ compile_commands.json
 CTestTestfile.cmake
 
 vita3k.log
+build
+eboot.bin.out
+switch_sd2vita.vpk.out

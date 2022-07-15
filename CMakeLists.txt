@@ -1,5 +1,5 @@
 ## This file is a quick tutorial on writing CMakeLists for targeting the Vita
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.23.1)
 
 ## This includes the Vita toolchain, must go before project definition
 # It is a convenience so you do not have to type
@@ -31,7 +31,7 @@ set(VITA_APP_NAME "Switch SD2Vita")
 
 set(VITA_TITLEID  "SWITCHSDV")
 # Optional version string to show in LiveArea's more info screen
-set(VITA_VERSION  "02.10")
+set(VITA_VERSION  "02.20")
 
 ## Flags and includes for building
 # Note that we make sure not to overwrite previous flags
@@ -63,6 +63,7 @@ target_link_libraries(${SHORT_NAME}
     ScePgf_stub
     SceCommonDialog_stub
     SceIofilemgr_stub
+    SceAppMgr_stub
     jansson
     freetype
     stdc++
@@ -106,7 +107,7 @@ add_custom_target(copy_vpk
 )
 
 add_custom_target(emulator
-        COMMAND ${VITA3K_PATH} ${CMAKE_CURRENT_BINARY_DIR}/${SHORT_NAME}.vpk
-        DEPENDS ${SHORT_NAME}.vpk
-        )
+  COMMAND ${VITA3K_PATH} ${CMAKE_CURRENT_BINARY_DIR}/${SHORT_NAME}.vpk
+  DEPENDS ${SHORT_NAME}.vpk
+)
 

@@ -7,60 +7,24 @@ You can also switch to another mount point if you want (xmc0, imc0, grw0) :)
 
 ![alt text](https://pbs.twimg.com/media/DoRtr6UXgAEY8S8.jpg "Screenshot")
 
-SwitchSD2Vita saves a config file in ``ux0:data/SwitchSD2Vita`` directory. For more informations, see the [F.A.Q section](#faq).
+SwitchSD2Vita saves a config file in `ux0:data/SwitchSD2Vita` directory. For more informations, see the [F.A.Q section](#faq).
 
-This homebrew uses [StorageMgr](https://github.com/CelesteBlue-dev/PSVita-StorageMgr) by *Celestblue-dev*.
+This homebrew uses [StorageMgr](https://github.com/CelesteBlue-dev/PSVita-StorageMgr) by _Celestblue-dev_.
 
 ## Changelog
 
-### Version 2.1 - Update to fix issues
-
-- Update PSVita-StorageMgr to 3.0 [#16](https://github.com/Applelo/SwitchSD2Vita/issues/16)
-- Add switch option to add MCD to a new config file [#14](https://github.com/Applelo/SwitchSD2Vita/issues/14)
-- A lot of improvements inside (always :p)
-- ImgBot reduce image file size by 20% [#17](https://github.com/Applelo/SwitchSD2Vita/pull/17)
-
-### Version 2.0 - StorageMgr is better, faster, stronger
-
-- Use PSVita-StorageMgr instead of gamesdcard-microsd (thanks to @CelesteBlue-dev)
-- You can choose what mount point you want for your gamesdcard
-- Support the 3.68 PSVita Version
-- A lot of improvements inside :)
-
-### Version 1.3 - The very small Update
-
-- Support the 3.65/3.67 PSVita Version (thanks to @TheOfficialFloW & @ArkSource)
-
-
-### Version 1.2 - The small Update
-
-- Detect old installation (1.0 version with uma0 config)
-- Small change in menu
-- Rename ux0:tai folder
-- Update PSVita database on switch
-- Add an official changelog
-- Fix, always fix :)
-
-### Version 1.1 - Yosh Update
-
-- Now using ur0 config exclusively
-- Added auto-switch feature
-- Fixed some stuff
-
-### Version 1.0 - First Version
-
-- Initial Release
+See [changelog file](https://github.com/Applelo/SwitchSD2Vita/blob/master/CHANGELOG.md)
 
 ## F.A.Q
 
-### I use an older version of the homebrew (lower than 2.0), Can I update safely ?
+### I use an older version of the homebrew, can I update safely ?
 
-Yes, you can. SwitchSD2Vita 2.0 and above detect if you have an old installation. You just need to use the uninstall option.
+Yes, you can. SwitchSD2Vita detect if you have an older installation. You just need to use the uninstall option.
 
 ### Where can I download it?
 
-You can download [here](https://github.com/Applelo/SwitchSD2Vita/releases) and install like any like Vita homebrew.
-But the application is also available on [VitaDB](https://vitadb.rinnegatamante.it/#/info/294) and so you can install it thanks to [Vita Homebrew Browser](https://github.com/devnoname120/vhbb).
+You can download this homebrew [here](https://github.com/Applelo/SwitchSD2Vita/releases) and install like any like Vita homebrew.
+But the application is also available on [VitaDB](https://vitadb.rinnegatamante.it/#/info/294) and so, you can install it thanks to the [Vita Homebrew Browser](https://github.com/devnoname120/vhbb).
 
 ### The homebrew includes StorageMgr plugin?
 
@@ -72,22 +36,23 @@ Just use uninstall option and reboot your vita to disable the plugin.
 
 ### What is the MCD option added in 2.1 version?
 
-The MCD option was added to answer to the issue [#14](https://github.com/Applelo/SwitchSD2Vita/issues/14). 
+The MCD option was added to answer to the issue [#14](https://github.com/Applelo/SwitchSD2Vita/issues/14).
 
-The official vita memory is not applied as uma0 if you choose the ux0 by default. This option correct this problem with a MCD option which is added in StorageMgr config file (uma0 for ux0 installation or else ux0). 
+The official vita memory is not applied as uma0 if you choose the ux0 by default. This option correct this problem with a MCD option which is added in StorageMgr config file (uma0 for ux0 installation or else ux0).
 
-By default, the option is activated but you can easily deactivated this one in the main menu if you want to continue to use it like before this update. 
+By default, the option is activated but you can easily deactivated this one in the main menu if you want to continue to use it like before the 2.1 update.
 
 ### What data are stored by SwitchSD2Vita on my device?
 
 The application store some data :
+
 - the MCD option
 - the current version of SwitchSD2Vita you use (to prevent problem with future migrations).
 
-You can find the file *config.json* in ``ux0:data/SwitchSD2Vita`` directory.
-
+You can find the file _config.json_ in `ux0:data/SwitchSD2Vita` directory.
 
 ## Build
+
 Install **VitaSDK** with [**VDPM**](https://github.com/vitasdk/vdpm) and run the followed commands :
 
 ```shell
@@ -110,17 +75,19 @@ make copy_vpk
 make emulate
 ```
 
-## Credits
+## Creditss
 
-* Developed & maintained by *Applelo*
-* *yosh* for the pull request [#5](https://github.com/Applelo/SwitchSD2Vita/pull/5) with fixes
-* *Tuxbot123* for the idea and the bubble customization
-* *wababc* for test and suggestion
-* *Celestblue-dev* for [StorageMgr plugin](https://github.com/CelesteBlue-dev/PSVita-StorageMgr)
-* All people bringing pull requests to this project
-* *Team Molecule* for HENkaku and taihen
-* All people contributed to VitaSDK
-* *xerpi* for the library vita2D
-* *The_FloW* for file functions and HENkaku 3.65/3.68
-* *KanadeEngel* for database trick
-* My master, *MisterAlex*
+- Developed & maintained by _Applelo_
+- _RealYoti_ for StorageMgr 3.74 update
+- _theheroGAC_ for updating SwitchSD2Vita
+- _yosh_ for the pull request [#5](https://github.com/Applelo/SwitchSD2Vita/pull/5) with fixes
+- _Tuxbot123_ for the idea and the bubble customization
+- _wababc_ for test and suggestion
+- _Celestblue-dev_ for [StorageMgr plugin](https://github.com/CelesteBlue-dev/PSVita-StorageMgr)
+- All people bringing pull requests to this project
+- _Team Molecule_ for HENkaku and taihen
+- All people contributed to VitaSDK
+- _xerpi_ for the library vita2D
+- _The_FloW_ for file functions and HENkaku 3.65/3.68
+- _KanadeEngel_ for database trick
+- My master, _MisterAlex_
