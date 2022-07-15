@@ -1,6 +1,6 @@
 # 2.2
 
-- Update PSVita-StorageMgr to 3.2 [#20](https://github.com/Applelo/SwitchSD2Vita/issues/20) (thanks to @CelesteBlue-dev and @theheroGAC)
+- Update PSVita-StorageMgr to 3.3 [#20](https://github.com/Applelo/SwitchSD2Vita/issues/20) (thanks to @CelesteBlue-dev, @theheroGAC and @RealYoti)
 
 # 2.1
 
