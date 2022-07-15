@@ -18,6 +18,7 @@
 */
 
 #include "../include/File.hh"
+#include <strings.h>
 
 File::File(const char* file) { _file = file; }
 
