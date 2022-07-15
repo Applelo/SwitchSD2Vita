@@ -75,9 +75,11 @@ make copy_vpk
 make emulate
 ```
 
-## Credits
+## Creditss
 
 - Developed & maintained by _Applelo_
+- _RealYoti_ for StorageMgr 3.74 update
+- _theheroGAC_ for updating SwitchSD2Vita
 - _yosh_ for the pull request [#5](https://github.com/Applelo/SwitchSD2Vita/pull/5) with fixes
 - _Tuxbot123_ for the idea and the bubble customization
 - _wababc_ for test and suggestion
