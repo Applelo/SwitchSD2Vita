@@ -3,7 +3,7 @@ name: Build
 on: [push]
 
 jobs:
-  myjob:
+  build:
     runs-on: ubuntu-latest
     env:
       VITASDK: /usr/local/vitasdk
